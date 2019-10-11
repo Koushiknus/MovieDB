@@ -20,4 +20,15 @@ class MovieListViewModel(application: Application) : AndroidViewModel(applicatio
                 }
         }
     }
+
+    fun getRelatedMovies(){
+        val result= Api.run {
+            getApiService().getRelatedMovies(475557,3)
+                .map(MovieResponse::getResults)
+                .subscribeOn(Schedulers.io())
+                .subscribe {
+                    Log.v("RelatedMovieSizeIs",it.size.toString())
+                }
+        }
+    }
 }
