@@ -16,7 +16,9 @@ class MovieListViewModel() : BaseViewModel() {
     @set: Inject
     var apiMethods : ApiMethods? = null
 
-    fun getListOfMovies(){
+    var mPageCount = 1
+
+    fun getListOfMovies(mPageCount: Int) {
        /* val result= Api.run {
             getApiService().getAllMovies()
                 .map(MovieResponse::getResults)
@@ -25,7 +27,7 @@ class MovieListViewModel() : BaseViewModel() {
                     Log.v("MovieSizeIs",it.size.toString())
                 }
         }*/
-        apiMethods!!.getAllMovies()
+        apiMethods!!.getAllMovies(this.mPageCount)
             .map(MovieResponse::getResults)
             .subscribeOn(Schedulers.io())
             .subscribe {

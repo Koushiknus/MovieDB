@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -18,6 +19,8 @@ class MovieListAdapter(private val ctx : Context): RecyclerView.Adapter<MovieLis
     private val POSTER_IMAGE_SIZE = "w780"
 
     private val mListOfMovies = ArrayList<Movie>()
+
+     val mEndReached = MutableLiveData<Boolean>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
@@ -46,7 +49,6 @@ class MovieListAdapter(private val ctx : Context): RecyclerView.Adapter<MovieLis
         }
     }
     fun setData(data: MutableList<Movie>) {
-        mListOfMovies.clear()
         mListOfMovies.addAll(data)
         notifyDataSetChanged()
 
@@ -60,6 +62,9 @@ class MovieListAdapter(private val ctx : Context): RecyclerView.Adapter<MovieLis
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.bindView(mListOfMovies[position],ctx,POSTER_IMAGE_BASE_URL,POSTER_IMAGE_SIZE)
+        if(position == itemCount-1){
+            mEndReached.value = true
+        }
 
     }
 }

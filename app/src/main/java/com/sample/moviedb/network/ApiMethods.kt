@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface ApiMethods{
 
     @GET("now_playing?"+ BuildConfig.BASE_API_KEY)
-    fun getAllMovies(
+    fun getAllMovies(@Query("page")page : Int
     ): Observable<MovieResponse>
 
     @GET("{id}/similar?"+BuildConfig.BASE_API_KEY)
