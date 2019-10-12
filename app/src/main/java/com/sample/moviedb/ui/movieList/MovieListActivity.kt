@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sample.moviedb.R
 import com.sample.moviedb.base.ViewModelFactory
 import com.sample.moviedb.ui.MovieListViewModel
+import com.sample.moviedb.utils.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.activity_movie_list.*
 
 class MovieListActivity : AppCompatActivity() {
@@ -34,6 +35,13 @@ class MovieListActivity : AppCompatActivity() {
         movies_grid.setHasFixedSize(true)
         movies_grid.layoutManager = mLayoutManager
         movies_grid.setItemAnimator(DefaultItemAnimator())
+        movies_grid.addItemDecoration(
+            ItemOffsetDecoration(
+                this,
+                R.dimen.movie_item_offset
+            )
+        )
+
         val columns = resources.getInteger(R.integer.movies_columns)
         gridLayoutManager = GridLayoutManager(this, columns)
         movies_grid.setLayoutManager(gridLayoutManager)
