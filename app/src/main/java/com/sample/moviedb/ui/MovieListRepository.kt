@@ -4,4 +4,5 @@ import com.sample.moviedb.base.BaseRepository
 
  class MovieListRepository : BaseRepository(){
 
+
 }

@@ -35,7 +35,7 @@ android {
     }
 }
 
-ext{
+ext {
     retrofitVersion = '2.4.0'
     supportVersion = '28.0.0'
     lifecyleVersion = '1.1.1'
@@ -46,7 +46,7 @@ ext{
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -62,20 +62,26 @@ dependencies {
 
     // Rx-Retrofit Call Adapter
     def rxcalladapter_version = '2.5.0'
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$rxcalladapter_version" // Retrofit call adapter
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rxcalladapter_version"
+    // Retrofit call adapter
 
     // Reactive Streams (convert Observable to LiveData)
     def reactivestreams_version = "1.1.1"
-    implementation "android.arch.lifecycle:reactivestreams:$reactivestreams_version"
+    implementation 'androidx.lifecycle:lifecycle-reactivestreams:2.0.0'
 
     implementation 'androidx.fragment:fragment-ktx:1.1.0-beta01'
 
     // LiveData & ViewModel
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+
+
 
     // ViewModel and LiveData life cycle
-    testImplementation "android.arch.core:core-testing:$lifecyleVersion"
+    testImplementation 'androidx.arch.core:core-testing:2.0.0'
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
@@ -83,6 +89,12 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptor"
 
     def dagger_version = "2.22"
+
+    // Glide
+    def glideVersion = "4.9.0"
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+
 //    def dagger_version = "2.16" // version used by google samples
 
     // Dagger2 core

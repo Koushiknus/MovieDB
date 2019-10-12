@@ -1,13 +1,17 @@
 package com.sample.moviedb.ui
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.sample.moviedb.base.BaseViewModel
 import com.sample.moviedb.network.ApiMethods
+import com.sample.moviedb.ui.model.Movie
 import com.sample.moviedb.ui.model.MovieResponse
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class MovieListViewModel() : BaseViewModel() {
+
+    val mListofMovies = MutableLiveData<ArrayList<Movie>>()
 
     @set: Inject
     var apiMethods : ApiMethods? = null
@@ -26,6 +30,7 @@ class MovieListViewModel() : BaseViewModel() {
             .subscribeOn(Schedulers.io())
             .subscribe {
                 Log.v("MovieSizeIs",it.size.toString())
+                mListofMovies.postValue(it)
             }
     }
 
