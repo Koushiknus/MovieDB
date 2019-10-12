@@ -5,6 +5,8 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sample.moviedb.R
 import com.sample.moviedb.base.ViewModelFactory
@@ -15,7 +17,7 @@ class MovieListActivity : AppCompatActivity() {
 
     private lateinit var mMovieListViewModel : MovieListViewModel
     private val mAdapter = MovieListAdapter(this)
-
+    private var gridLayoutManager: GridLayoutManager? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +33,10 @@ class MovieListActivity : AppCompatActivity() {
         val mLayoutManager = LinearLayoutManager(this)
         movies_grid.setHasFixedSize(true)
         movies_grid.layoutManager = mLayoutManager
+        movies_grid.setItemAnimator(DefaultItemAnimator())
+        val columns = resources.getInteger(R.integer.movies_columns)
+        gridLayoutManager = GridLayoutManager(this, columns)
+        movies_grid.setLayoutManager(gridLayoutManager)
 
         // mMovieListViewModel.getRelatedMovies()
     }
