@@ -16,6 +16,16 @@
             android:clipToPadding="false"
             android:padding="@dimen/movie_item_offset"
             android:scrollbars="vertical"/>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLargeInverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:layout_gravity="bottom|center_horizontal"
+            android:gravity="center"
+            android:visibility="gone"
+            />
 
         <RelativeLayout
             android:id="@+id/view_no_movies"
@@ -40,6 +50,8 @@
                 android:textStyle="bold"/>
 
         </RelativeLayout>
+
+
 
     </FrameLayout>
 

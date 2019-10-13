@@ -3,6 +3,7 @@ package com.sample.moviedb.ui.movieList
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -32,6 +33,7 @@ class MovieListActivity : AppCompatActivity() {
     private fun initialData(){
         mMovieListViewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(
             MovieListViewModel::class.java)
+        progressBar.visibility = View.VISIBLE
         mMovieListViewModel.getListOfMovies(mMovieListViewModel.mPageCount)
         val mLayoutManager = LinearLayoutManager(this)
         movies_grid.adapter = mAdapter
@@ -55,12 +57,14 @@ class MovieListActivity : AppCompatActivity() {
     private fun initialObservers(){
        mMovieListViewModel.mListofMovies.observe(this, Observer {
            Log.v("ObserverInvoked",it.size.toString())
+           progressBar.visibility = View.GONE
            mAdapter.setData(it)
 
        })
         mAdapter.mEndReached.observe(this, Observer {
             Log.v("EndReached",it.toString())
             mMovieListViewModel.mPageCount++
+            progressBar.visibility = View.VISIBLE
             mMovieListViewModel.getListOfMovies(mMovieListViewModel.mPageCount)
 
         })
