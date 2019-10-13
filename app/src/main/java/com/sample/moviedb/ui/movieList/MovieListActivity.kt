@@ -15,6 +15,7 @@ import com.sample.moviedb.base.ViewModelFactory
 import com.sample.moviedb.ui.moviedetail.MovieDetailActivity
 import com.sample.moviedb.utils.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.activity_movie_list.*
+import kotlinx.android.synthetic.main.layout_progressbar.*
 
 
 class MovieListActivity : AppCompatActivity() {

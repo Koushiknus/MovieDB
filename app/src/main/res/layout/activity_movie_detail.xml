@@ -140,12 +140,15 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/spacing_medium">
 
+
+
             <TextView
                 android:id="@+id/text_videos_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Similar Titles"
                 android:textStyle="bold"/>
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/movie_videos"
@@ -156,44 +159,13 @@
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/spacing_medium"
                 />
+            <include layout="@layout/layout_progressbar"  android:layout_width="wrap_content"
+                android:layout_height="wrap_content"  android:layout_centerInParent="true" />
 
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_movie_reviews"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/card_movie_videos"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/spacing_small"
-        android:layout_marginLeft="@dimen/movie_detail_cards_margin_left_right"
-        android:layout_marginRight="@dimen/movie_detail_cards_margin_left_right"
-        android:layout_marginTop="@dimen/spacing_small">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/spacing_medium">
-
-            <TextView
-                android:id="@+id/text_reviews_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Similar Titles"
-                android:textStyle="bold"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/movie_reviews"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/text_reviews_title"
-                android:paddingTop="@dimen/spacing_medium"/>
-
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
 </layout>

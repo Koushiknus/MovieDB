@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -22,6 +23,7 @@ import com.sample.moviedb.ui.model.Movie
 import com.sample.moviedb.ui.movieList.MovieListAdapter
 import com.sample.moviedb.utils.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.activity_movie_detail.*
+import kotlinx.android.synthetic.main.layout_progressbar.*
 
 class MovieDetailActivity : AppCompatActivity() {
 
@@ -44,6 +46,7 @@ class MovieDetailActivity : AppCompatActivity() {
         mMovieDetailViewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(
             MovieDetailViewModel::class.java)
         getIntentExtra()
+        progressBar.visibility = View.VISIBLE
         mMovieDetailViewModel.getRelatedMovies(mMovie!!.id)
         val mLayoutManager = LinearLayoutManager(this)
         movie_videos.adapter = mAdapter
@@ -68,10 +71,13 @@ class MovieDetailActivity : AppCompatActivity() {
 
             Log.v("RelatedResult",it.size.toString())
             mAdapter.setData(it)
+            progressBar.visibility = View.GONE
         })
         mAdapter.mEndReached.observe(this, Observer {
             Log.v("EndReached",it.toString())
             mMovieDetailViewModel.mPageCount++
+            progressBar.visibility = View.VISIBLE
+
             mMovieDetailViewModel.getListOfMovies(mMovieDetailViewModel.mPageCount)
 
         })
