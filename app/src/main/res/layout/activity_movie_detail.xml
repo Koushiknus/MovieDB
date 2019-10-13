@@ -100,9 +100,6 @@
             android:layout_marginRight="@dimen/movie_detail_cards_margin_left_right"
             android:layout_marginBottom="@dimen/spacing_small">
 
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -119,7 +116,7 @@
                 <TextView
                     android:id="@+id/text_movie_overview"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:scrollbars = "vertical"
                     android:layout_below="@+id/text_movie_overview_title"
                     android:paddingTop="@dimen/spacing_medium"
@@ -127,7 +124,6 @@
                     tools:text="A plot synopsis (called overview in the api)" />
 
             </RelativeLayout>
-            </ScrollView>
 
         </androidx.cardview.widget.CardView>
 
@@ -156,6 +152,9 @@
                     android:layout_height="wrap_content"
                     android:text="@string/similar_titles"
                     android:textStyle="bold" />
+                <ScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -166,6 +165,7 @@
                     android:background="@color/white"
                     android:orientation="horizontal"
                     android:paddingTop="@dimen/spacing_medium" />
+                </ScrollView>
 
                 <include
                     layout="@layout/layout_progressbar"
