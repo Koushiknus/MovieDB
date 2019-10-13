@@ -1,4 +1,4 @@
-package com.sample.moviedb.ui.model
+package com.sample.moviedb.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

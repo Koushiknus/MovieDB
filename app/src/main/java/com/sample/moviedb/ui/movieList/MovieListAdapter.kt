@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.sample.moviedb.R
-import com.sample.moviedb.ui.model.Movie
+import com.sample.moviedb.model.Movie
 
 class MovieListAdapter(private val ctx : Context): RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 

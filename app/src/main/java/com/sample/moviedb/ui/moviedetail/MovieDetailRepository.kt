@@ -2,8 +2,8 @@ package com.sample.moviedb.ui.moviedetail
 
 import com.sample.moviedb.base.BaseRepository
 import com.sample.moviedb.network.ApiMethods
-import com.sample.moviedb.ui.model.Movie
-import com.sample.moviedb.ui.model.MovieResponse
+import com.sample.moviedb.model.Movie
+import com.sample.moviedb.model.MovieResponse
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import java.util.*

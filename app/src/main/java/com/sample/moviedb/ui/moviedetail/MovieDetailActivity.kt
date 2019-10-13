@@ -20,7 +20,7 @@ import com.sample.moviedb.R
 import com.sample.moviedb.base.Constants
 import com.sample.moviedb.base.ViewModelFactory
 import com.sample.moviedb.databinding.ActivityMovieDetailBinding
-import com.sample.moviedb.ui.model.Movie
+import com.sample.moviedb.model.Movie
 import com.sample.moviedb.ui.movieList.MovieListAdapter
 import com.sample.moviedb.utils.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.activity_movie_detail.*

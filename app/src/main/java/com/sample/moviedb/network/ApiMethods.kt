@@ -1,7 +1,7 @@
 package com.sample.moviedb.network
 
 import com.sample.moviedb.BuildConfig
-import com.sample.moviedb.ui.model.MovieResponse
+import com.sample.moviedb.model.MovieResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path

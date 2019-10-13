@@ -1,4 +1,4 @@
-package com.sample.moviedb.ui.model
+package com.sample.moviedb.model
 
 import java.util.*
 

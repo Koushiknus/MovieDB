@@ -2,7 +2,7 @@ package com.sample.moviedb.ui.movieList
 
 import androidx.lifecycle.MutableLiveData
 import com.sample.moviedb.base.BaseViewModel
-import com.sample.moviedb.ui.model.Movie
+import com.sample.moviedb.model.Movie
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
