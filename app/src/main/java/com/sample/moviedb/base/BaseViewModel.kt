@@ -5,7 +5,7 @@ import com.sample.moviedb.di.AppModule
 import com.sample.moviedb.di.DaggerViewModelInjector
 import com.sample.moviedb.di.RepositoryModule
 import com.sample.moviedb.di.ViewModelInjector
-import com.sample.moviedb.ui.MovieListViewModel
+import com.sample.moviedb.ui.movieList.MovieListViewModel
 import com.sample.moviedb.ui.moviedetail.MovieDetailViewModel
 
 abstract class BaseViewModel : ViewModel() {

@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -55,8 +56,7 @@ class MovieDetailActivity : AppCompatActivity() {
                 R.dimen.movie_item_offset
             )
         )
-
-        val columns = resources.getInteger(com.sample.moviedb.R.integer.movies_columns)
+        val columns = resources.getInteger(R.integer.movies_columns)
         gridLayoutManager = GridLayoutManager(this, columns)
         movie_videos.layoutManager = gridLayoutManager
 
@@ -76,8 +76,6 @@ class MovieDetailActivity : AppCompatActivity() {
 
         })
         mAdapter.mMovieClicked.observe(this, Observer {
-
-            Log.v("MovieReceived",it.original_title)
             Intent(this, MovieDetailActivity::class.java).apply {
                 putExtra(Constants.MOVIE_ID,it)
                 startActivity(this)
@@ -93,10 +91,9 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
     private fun setPoster(movie : Movie?){
-
         Glide.with(this)
             .load(Constants.POSTER_IMAGE_BASE_URL + Constants.POSTER_IMAGE_SIZE + movie?.poster_path)
-            .placeholder(ColorDrawable(getResources().getColor(R.color.accent_material_light)))
+            .placeholder(ColorDrawable(ContextCompat.getColor(this, R.color.accent_material_light)))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .fitCenter()
             .into(image_movie_detail_poster)

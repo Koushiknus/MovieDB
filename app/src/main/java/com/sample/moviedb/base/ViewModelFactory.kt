@@ -3,7 +3,7 @@ package com.sample.moviedb.base
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.sample.moviedb.ui.MovieListViewModel
+import com.sample.moviedb.ui.movieList.MovieListViewModel
 import com.sample.moviedb.ui.moviedetail.MovieDetailViewModel
 import javax.inject.Singleton
 

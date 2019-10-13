@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.sample.moviedb.base.ViewModelFactory
-import com.sample.moviedb.ui.MovieListViewModel
+import com.sample.moviedb.ui.movieList.MovieListViewModel
 
 class MainActivity : AppCompatActivity() {
 

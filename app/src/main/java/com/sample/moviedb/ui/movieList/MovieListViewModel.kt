@@ -1,4 +1,4 @@
-package com.sample.moviedb.ui
+package com.sample.moviedb.ui.movieList
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

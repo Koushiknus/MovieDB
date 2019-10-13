@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sample.moviedb.base.Constants
 import com.sample.moviedb.base.ViewModelFactory
-import com.sample.moviedb.ui.MovieListViewModel
 import com.sample.moviedb.ui.moviedetail.MovieDetailActivity
 import com.sample.moviedb.utils.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.activity_movie_list.*
@@ -23,15 +22,6 @@ class MovieListActivity : AppCompatActivity() {
     private val mAdapter = MovieListAdapter(this)
     private var gridLayoutManager: GridLayoutManager? = null
 
-    private var loading = true
-    var pastVisiblesItems: Int = 0
-    var visibleItemCount:Int = 0
-    var totalItemCount:Int = 0
-    private var visibleThreshold = 5
-    private var previousTotal = 0
-    var firstVisibleItem: Int = 0
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.sample.moviedb.R.layout.activity_movie_list)
@@ -40,7 +30,8 @@ class MovieListActivity : AppCompatActivity() {
     }
 
     private fun initialData(){
-        mMovieListViewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(MovieListViewModel::class.java)
+        mMovieListViewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(
+            MovieListViewModel::class.java)
         mMovieListViewModel.getListOfMovies(mMovieListViewModel.mPageCount)
         val mLayoutManager = LinearLayoutManager(this)
         movies_grid.adapter = mAdapter

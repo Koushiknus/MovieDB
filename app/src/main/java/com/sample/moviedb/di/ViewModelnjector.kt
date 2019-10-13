@@ -1,6 +1,6 @@
 package com.sample.moviedb.di
 
-import com.sample.moviedb.ui.MovieListViewModel
+import com.sample.moviedb.ui.movieList.MovieListViewModel
 import com.sample.moviedb.ui.moviedetail.MovieDetailViewModel
 import dagger.Component
 import javax.inject.Singleton
