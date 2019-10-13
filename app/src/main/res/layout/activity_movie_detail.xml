@@ -1,171 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:tools="http://schemas.android.com/tools">
+
     <data>
 
         <variable
             name="movie"
             type="com.sample.moviedb.ui.model.Movie" />
     </data>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_movie_detail"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/spacing_small"
-        android:layout_marginLeft="@dimen/movie_detail_cards_margin_left_right"
-        android:layout_marginRight="@dimen/movie_detail_cards_margin_left_right"
-        android:layout_marginTop="@dimen/spacing_medium">
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.sample.moviedb.utils.ProportionalImageView
-                android:id="@+id/image_movie_detail_poster"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/movie_poster"
-                tools:src="@mipmap/ic_launcher"/>
-
-            <TextView
-                android:id="@+id/text_movie_original_title"
-                style="@android:style/TextAppearance.Large"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/image_movie_detail_poster"
-                android:layout_toEndOf="@+id/image_movie_detail_poster"
-                android:layout_toRightOf="@+id/image_movie_detail_poster"
-                android:ellipsize="end"
-                android:fontFamily="sans-serif-condensed"
-                android:maxLines="3"
-                android:paddingEnd="8dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:paddingStart="8dp"
-                android:paddingTop="16dp"
-                android:text="@{movie.title}"
-                tools:text="Original movie title"/>
-
-            <TextView
-                android:id="@+id/text_movie_user_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_margin="@dimen/spacing_medium"
-                android:layout_toEndOf="@+id/image_movie_detail_poster"
-                android:layout_toRightOf="@+id/image_movie_detail_poster"
-                android:fontFamily="sans-serif-light"
-                android:gravity="center"
-                android:text='@{String.format("%.1f", movie.vote_average)}'
-                android:textSize="42sp"
-                tools:text="10.0"/>
-
-            <TextView
-                android:id="@+id/text_movie_release_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/image_movie_detail_poster"
-                android:layout_marginBottom="@dimen/spacing_medium"
-                android:layout_toEndOf="@+id/image_movie_detail_poster"
-                android:layout_toRightOf="@+id/image_movie_detail_poster"
-                android:paddingEnd="8dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:paddingStart="8dp"
-                android:text="@{movie.release_date}"
-                tools:text="Release date: 08.10.2015"/>
-
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_movie_overview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/card_movie_detail"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/spacing_small"
-        android:layout_marginLeft="@dimen/movie_detail_cards_margin_left_right"
-        android:layout_marginRight="@dimen/movie_detail_cards_margin_left_right"
-        android:layout_marginTop="@dimen/spacing_small">
-
-        <RelativeLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_movie_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/spacing_medium">
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/movie_detail_cards_margin_left_right"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginRight="@dimen/movie_detail_cards_margin_left_right"
+            android:layout_marginBottom="@dimen/spacing_small">
 
-            <TextView
-                android:id="@+id/text_movie_overview_title"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/overview"
-                android:textStyle="bold"/>
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/text_movie_overview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text= "@{movie.overview}"
-                android:layout_below="@+id/text_movie_overview_title"
-                android:paddingTop="@dimen/spacing_medium"
-                tools:text="A plot synopsis (called overview in the api)"/>
+                <com.sample.moviedb.utils.ProportionalImageView
+                    android:id="@+id/image_movie_detail_poster"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/movie_poster"
+                    tools:src="@mipmap/ic_launcher" />
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/text_movie_original_title"
+                    style="@android:style/TextAppearance.Large"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/image_movie_detail_poster"
+                    android:layout_toEndOf="@+id/image_movie_detail_poster"
+                    android:layout_toRightOf="@+id/image_movie_detail_poster"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-condensed"
+                    android:maxLines="3"
+                    android:paddingStart="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@{movie.title}"
+                    tools:text="Original movie title" />
 
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/text_movie_user_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:layout_toEndOf="@+id/image_movie_detail_poster"
+                    android:layout_toRightOf="@+id/image_movie_detail_poster"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center"
+                    android:text='@{String.format("%.1f", movie.vote_average)}'
+                    android:textSize="42sp"
+                    tools:text="10.0" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_movie_videos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/card_movie_overview"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/movie_detail_cards_margin_left_right"
-        android:layout_marginRight="@dimen/movie_detail_cards_margin_left_right"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:background="@color/white">
+                <TextView
+                    android:id="@+id/text_movie_release_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/image_movie_detail_poster"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    android:layout_toEndOf="@+id/image_movie_detail_poster"
+                    android:layout_toRightOf="@+id/image_movie_detail_poster"
+                    android:paddingStart="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@{movie.release_date}"
+                    tools:text="Release date: 08.10.2015" />
 
-        <RelativeLayout
-            android:id="@+id/card_movie_videos_content"
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_movie_overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/spacing_medium">
+            android:layout_below="@+id/card_movie_detail"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/movie_detail_cards_margin_left_right"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginRight="@dimen/movie_detail_cards_margin_left_right"
+            android:layout_marginBottom="@dimen/spacing_small">
 
-
-
-            <TextView
-                android:id="@+id/text_videos_title"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Similar Titles"
-                android:textStyle="bold"/>
+                android:padding="@dimen/spacing_medium">
 
+                <TextView
+                    android:id="@+id/text_movie_overview_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/overview"
+                    android:textStyle="bold" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/movie_videos"
+                <TextView
+                    android:id="@+id/text_movie_overview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_movie_overview_title"
+                    android:paddingTop="@dimen/spacing_medium"
+                    android:text="@{movie.overview}"
+                    tools:text="A plot synopsis (called overview in the api)" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_movie_similar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_movie_overview"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/movie_detail_cards_margin_left_right"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginRight="@dimen/movie_detail_cards_margin_left_right"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:id="@+id/card_movie_videos_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/text_videos_title"
-                android:background="@color/white"
-                android:orientation="horizontal"
-                android:paddingTop="@dimen/spacing_medium"
-                />
-            <include layout="@layout/layout_progressbar"  android:layout_width="wrap_content"
-                android:layout_height="wrap_content"  android:layout_centerInParent="true" />
-
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
+                android:padding="@dimen/spacing_medium">
 
 
-</RelativeLayout>
+                <TextView
+                    android:id="@+id/text_videos_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Similar Titles"
+                    android:textStyle="bold" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/movie_similar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_videos_title"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/spacing_medium" />
+
+                <include
+                    layout="@layout/layout_progressbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
 </layout>

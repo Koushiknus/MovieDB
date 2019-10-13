@@ -49,11 +49,11 @@ class MovieDetailActivity : AppCompatActivity() {
         progressBar.visibility = View.VISIBLE
         mMovieDetailViewModel.getRelatedMovies(mMovie!!.id)
         val mLayoutManager = LinearLayoutManager(this)
-        movie_videos.adapter = mAdapter
-        movie_videos.setHasFixedSize(true)
-        movie_videos.layoutManager = mLayoutManager
-        movie_videos.setItemAnimator(DefaultItemAnimator())
-        movie_videos.addItemDecoration(
+        movie_similar.adapter = mAdapter
+        movie_similar.setHasFixedSize(true)
+        movie_similar.layoutManager = mLayoutManager
+        movie_similar.setItemAnimator(DefaultItemAnimator())
+        movie_similar.addItemDecoration(
             ItemOffsetDecoration(
                 this,
                 R.dimen.movie_item_offset
@@ -61,7 +61,7 @@ class MovieDetailActivity : AppCompatActivity() {
         )
         val columns = resources.getInteger(R.integer.movies_columns)
         gridLayoutManager = GridLayoutManager(this, columns)
-        movie_videos.layoutManager = gridLayoutManager
+        movie_similar.layoutManager = gridLayoutManager
 
     }
 
