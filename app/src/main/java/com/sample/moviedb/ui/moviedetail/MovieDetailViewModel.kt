@@ -1,17 +1,21 @@
 package com.sample.moviedb.ui.moviedetail
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.sample.moviedb.base.BaseViewModel
 import com.sample.moviedb.network.ApiMethods
 import com.sample.moviedb.ui.model.Movie
-import com.sample.moviedb.ui.model.MovieResponse
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 class MovieDetailViewModel : BaseViewModel() {
 
     val mListofMovies = MutableLiveData<ArrayList<Movie>>()
+    private  var mSubscription: Disposable? =null
+
+    @set:Inject
+    var mMovieDetailRepository : MovieDetailRepository? = null
+
+    var mMovieId : Long = 0L
 
     @set: Inject
     var apiMethods : ApiMethods? = null
@@ -21,30 +25,17 @@ class MovieDetailViewModel : BaseViewModel() {
 
     fun getRelatedMovies(movieId : Long){
 
-        apiMethods!!.getRelatedMovies(movieId,mPageCount)
-            .map(MovieResponse::getResults)
-            .subscribeOn(Schedulers.io())
-            .subscribe {
-                Log.v("RelatedMovieSizeIs",it.size.toString())
-                mListofMovies.postValue(it)
-            }
+        mSubscription =   mMovieDetailRepository?.getRelatedMovies(movieId,mPageCount)?.subscribe({
+            mListofMovies.postValue(it)
+        },{
+            //error handling
+        })
+
     }
-    fun getListOfMovies(mPageCount: Int) {
-        /* val result= Api.run {
-             getApiService().getAllMovies()
-                 .map(MovieResponse::getResults)
-                 .subscribeOn(Schedulers.io())
-                 .subscribe {
-                     Log.v("MovieSizeIs",it.size.toString())
-                 }
-         }*/
-        apiMethods!!.getAllMovies(this.mPageCount)
-            .map(MovieResponse::getResults)
-            .subscribeOn(Schedulers.io())
-            .subscribe {
-                Log.v("MovieSizeIs",it.size.toString())
-                mListofMovies.postValue(it)
-            }
+
+    override fun onCleared() {
+        super.onCleared()
+        mSubscription?.dispose()
     }
 
 }

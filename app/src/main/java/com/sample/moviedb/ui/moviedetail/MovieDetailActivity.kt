@@ -84,7 +84,7 @@ class MovieDetailActivity : AppCompatActivity() {
             mMovieDetailViewModel.mPageCount++
             progressBar.visibility = View.VISIBLE
 
-            mMovieDetailViewModel.getListOfMovies(mMovieDetailViewModel.mPageCount)
+            mMovieDetailViewModel.getRelatedMovies(mMovieDetailViewModel.mMovieId)
 
         })
         mAdapter.mMovieClicked.observe(this, Observer {
@@ -97,9 +97,11 @@ class MovieDetailActivity : AppCompatActivity() {
 
     private fun getIntentExtra(){
        mMovie = intent.getParcelableExtra<Movie>(Constants.MOVIE_ID)
-        setPoster(mMovie)
-        mMovieDetailBinding.movie = mMovie
-
+        mMovie?.let {movie->
+            setPoster(movie)
+            mMovieDetailBinding.movie = movie
+            mMovieDetailViewModel.mMovieId = movie.id
+        }
     }
 
     private fun setPoster(movie : Movie?){

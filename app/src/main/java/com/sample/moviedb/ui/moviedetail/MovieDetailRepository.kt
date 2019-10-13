@@ -1,4 +1,4 @@
-package com.sample.moviedb.ui
+package com.sample.moviedb.ui.moviedetail
 
 import com.sample.moviedb.base.BaseRepository
 import com.sample.moviedb.network.ApiMethods
@@ -9,20 +9,16 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
-class MovieListRepository : BaseRepository(){
+class MovieDetailRepository : BaseRepository() {
 
- @set: Inject
- var mApiMethods : ApiMethods? = null
+    @set: Inject
+    var mApiMethods : ApiMethods? = null
 
- fun getListOfMovies(mPageCount: Int): Observable<ArrayList<Movie>>? {
-    mApiMethods?.let { apiMethods ->
-        return  apiMethods.getAllMovies(mPageCount)
+    fun getRelatedMovies(movieId : Long,pageCount : Int): Observable<ArrayList<Movie>>? {
+
+     return   mApiMethods!!.getRelatedMovies(movieId,pageCount)
             .map(MovieResponse::getResults)
             .subscribeOn(Schedulers.io())
 
-    }?: run {
-        return null
     }
- }
-
 }

@@ -1,6 +1,7 @@
 package com.sample.moviedb.di
 
-import com.sample.moviedb.ui.MovieListRepository
+import com.sample.moviedb.ui.movieList.MovieListRepository
+import com.sample.moviedb.ui.moviedetail.MovieDetailRepository
 import dagger.Component
 import javax.inject.Singleton
 
@@ -9,6 +10,7 @@ import javax.inject.Singleton
 interface RepositoryInjector {
 
     fun inject(movieListRepository: MovieListRepository)
+    fun inject(movieDetailRepository: MovieDetailRepository)
 
     @Component.Builder
     interface Builder {
