@@ -2,7 +2,6 @@ package com.sample.moviedb.ui.movieList
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -51,27 +50,21 @@ class MovieListActivity : AppCompatActivity() {
         val columns = resources.getInteger(com.sample.moviedb.R.integer.movies_columns)
         gridLayoutManager = GridLayoutManager(this, columns)
         movies_grid.setLayoutManager(gridLayoutManager)
-
-        // mMovieListViewModel.getRelatedMovies()
     }
 
     private fun initialObservers(){
        mMovieListViewModel.mListofMovies.observe(this, Observer {
-           Log.v("ObserverInvoked",it.size.toString())
            progressBar.visibility = View.GONE
            mAdapter.setData(it)
 
        })
         mAdapter.mEndReached.observe(this, Observer {
-            Log.v("EndReached",it.toString())
             mMovieListViewModel.mPageCount++
             progressBar.visibility = View.VISIBLE
             mMovieListViewModel.getListOfMovies(mMovieListViewModel.mPageCount)
 
         })
         mAdapter.mMovieClicked.observe(this, Observer {
-
-            Log.v("MovieReceived",it.original_title)
             Intent(this, MovieDetailActivity::class.java).apply {
                 putExtra(Constants.MOVIE_ID,it)
                 startActivity(this)

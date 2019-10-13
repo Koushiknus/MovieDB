@@ -46,12 +46,7 @@ object AppModule {
             .create(ApiMethods::class.java)
     }
 
-    /* @Provides
-     @JvmStatic
-     @Reusable
-     internal fun provideApiService(retrofit: Retrofit): ApiMethods {
-         return retrofit.create<ApiMethods>(ApiMethods::class.java!!)
-     }*/
+
 /*
     @Reusable
     @Provides

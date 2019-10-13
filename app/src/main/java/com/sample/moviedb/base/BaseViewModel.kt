@@ -18,13 +18,11 @@ abstract class BaseViewModel : ViewModel() {
 
     init {
         inject()
-
     }
 
     private fun inject(){
         when (this) {
             is MovieListViewModel -> injector.inject(this)
-
             is MovieDetailViewModel -> injector.inject(this)
 
         }

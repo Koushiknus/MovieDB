@@ -18,7 +18,6 @@ class ViewModelFactory(context: Context) : ViewModelProvider.Factory {
         if(modelClass.isAssignableFrom(MovieDetailViewModel::class.java))
             return MovieDetailViewModel() as T
 
-
         throw IllegalArgumentException("Unknown ViewModel class")
 
     }
