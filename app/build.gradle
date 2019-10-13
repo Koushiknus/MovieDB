@@ -22,6 +22,10 @@ android {
         experimental = true
     }
 
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes {
         debug {
             debuggable true

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <variable
+            name="movie"
+            type="com.sample.moviedb.ui.model.Movie" />
+    </data>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -45,6 +51,7 @@
                 android:paddingRight="8dp"
                 android:paddingStart="8dp"
                 android:paddingTop="16dp"
+                android:text="@{movie.title}"
                 tools:text="Original movie title"/>
 
             <TextView
@@ -57,6 +64,7 @@
                 android:layout_toRightOf="@+id/image_movie_detail_poster"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center"
+                android:text='@{String.format("%.1f", movie.vote_average)}'
                 android:textSize="42sp"
                 tools:text="10.0"/>
 
@@ -72,6 +80,7 @@
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:paddingStart="8dp"
+                android:text="@{movie.release_date}"
                 tools:text="Release date: 08.10.2015"/>
 
         </RelativeLayout>
@@ -105,6 +114,7 @@
                 android:id="@+id/text_movie_overview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text= "@{movie.overview}"
                 android:layout_below="@+id/text_movie_overview_title"
                 android:paddingTop="@dimen/spacing_medium"
                 tools:text="A plot synopsis (called overview in the api)"/>
@@ -186,3 +196,4 @@
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
+</layout>
