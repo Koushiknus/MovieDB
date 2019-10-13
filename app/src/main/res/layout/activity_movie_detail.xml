@@ -7,8 +7,9 @@
             type="com.sample.moviedb.ui.model.Movie" />
     </data>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -86,6 +87,8 @@
 
         </androidx.cardview.widget.CardView>
 
+
+
         <androidx.cardview.widget.CardView
             android:id="@+id/card_movie_overview"
             android:layout_width="match_parent"
@@ -96,6 +99,10 @@
             android:layout_marginTop="@dimen/spacing_small"
             android:layout_marginRight="@dimen/movie_detail_cards_margin_left_right"
             android:layout_marginBottom="@dimen/spacing_small">
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -112,17 +119,20 @@
                 <TextView
                     android:id="@+id/text_movie_overview"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
+                    android:scrollbars = "vertical"
                     android:layout_below="@+id/text_movie_overview_title"
                     android:paddingTop="@dimen/spacing_medium"
                     android:text="@{movie.overview}"
                     tools:text="A plot synopsis (called overview in the api)" />
 
             </RelativeLayout>
+            </ScrollView>
 
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
+
+            <androidx.cardview.widget.CardView
             android:id="@+id/card_movie_similar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -192,5 +202,7 @@
 
         </androidx.cardview.widget.CardView>
 
-    </RelativeLayout>
+
+        </RelativeLayout>
+
 </layout>

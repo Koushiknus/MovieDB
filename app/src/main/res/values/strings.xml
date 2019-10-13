@@ -6,4 +6,6 @@
     <string name="movie_poster">Movie Poster</string>
     <string name="overview">Overview</string>
     <string name="similar_titles">Similar Titles</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+
 </resources>

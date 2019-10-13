@@ -3,6 +3,7 @@ package com.sample.moviedb.ui.moviedetail
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -48,6 +49,7 @@ class MovieDetailActivity : AppCompatActivity() {
         getIntentExtra()
         progressBar.visibility = View.VISIBLE
         mMovieDetailViewModel.getRelatedMovies(mMovie!!.id)
+        text_movie_overview.movementMethod = ScrollingMovementMethod()
         val mLayoutManager = LinearLayoutManager(this)
         movie_similar.adapter = mAdapter
         movie_similar.setHasFixedSize(true)
@@ -78,7 +80,7 @@ class MovieDetailActivity : AppCompatActivity() {
             }
         })
         mAdapter.mEndReached.observe(this, Observer {
-            Log.v("EndReached",it.toString())
+            Log.v("DetailEndReached",it.toString())
             mMovieDetailViewModel.mPageCount++
             progressBar.visibility = View.VISIBLE
 
