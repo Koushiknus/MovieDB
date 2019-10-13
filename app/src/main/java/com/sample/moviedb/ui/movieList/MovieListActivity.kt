@@ -1,5 +1,6 @@
 package com.sample.moviedb.ui.movieList
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -8,9 +9,10 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.sample.moviedb.base.Constants
 import com.sample.moviedb.base.ViewModelFactory
 import com.sample.moviedb.ui.MovieListViewModel
+import com.sample.moviedb.ui.moviedetail.MovieDetailActivity
 import com.sample.moviedb.utils.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.activity_movie_list.*
 
@@ -52,33 +54,6 @@ class MovieListActivity : AppCompatActivity() {
             )
         )
 
-        movies_grid.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                visibleItemCount = movies_grid.getChildCount()
-                totalItemCount = mLayoutManager.itemCount
-                firstVisibleItem = mLayoutManager.findFirstVisibleItemPosition()
-
-                if (loading) {
-                    if (totalItemCount > previousTotal) {
-                        loading = false
-                        previousTotal = totalItemCount
-                    }
-                }
-                if (!loading && totalItemCount - visibleItemCount <= firstVisibleItem + visibleThreshold) {
-                    // End has been reached
-
-                    Log.v("Yaeye!", "end called")
-
-                    // Do something
-
-                    loading = true
-                }
-            }
-        })
-
         val columns = resources.getInteger(com.sample.moviedb.R.integer.movies_columns)
         gridLayoutManager = GridLayoutManager(this, columns)
         movies_grid.setLayoutManager(gridLayoutManager)
@@ -97,6 +72,14 @@ class MovieListActivity : AppCompatActivity() {
             mMovieListViewModel.mPageCount++
             mMovieListViewModel.getListOfMovies(mMovieListViewModel.mPageCount)
 
+        })
+        mAdapter.mMovieClicked.observe(this, Observer {
+
+            Log.v("MovieReceived",it.original_title)
+            Intent(this, MovieDetailActivity::class.java).apply {
+                putExtra(Constants.MOVIE_ID,it)
+                startActivity(this)
+            }
         })
     }
 

@@ -20,7 +20,8 @@ class MovieListAdapter(private val ctx : Context): RecyclerView.Adapter<MovieLis
 
     private val mListOfMovies = ArrayList<Movie>()
 
-     val mEndReached = MutableLiveData<Boolean>()
+    val mEndReached = MutableLiveData<Boolean>()
+    var mMovieClicked  = MutableLiveData<Movie>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
@@ -46,6 +47,7 @@ class MovieListAdapter(private val ctx : Context): RecyclerView.Adapter<MovieLis
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .fitCenter()
                 .into(moviePoster)
+
         }
     }
     fun setData(data: MutableList<Movie>) {
@@ -64,6 +66,9 @@ class MovieListAdapter(private val ctx : Context): RecyclerView.Adapter<MovieLis
         holder.bindView(mListOfMovies[position],ctx,POSTER_IMAGE_BASE_URL,POSTER_IMAGE_SIZE)
         if(position == itemCount-1){
             mEndReached.value = true
+        }
+        holder.moviePoster.setOnClickListener {
+            mMovieClicked.postValue(mListOfMovies[position])
         }
 
     }

@@ -6,6 +6,7 @@ import com.sample.moviedb.di.DaggerViewModelInjector
 import com.sample.moviedb.di.RepositoryModule
 import com.sample.moviedb.di.ViewModelInjector
 import com.sample.moviedb.ui.MovieListViewModel
+import com.sample.moviedb.ui.moviedetail.MovieDetailViewModel
 
 abstract class BaseViewModel : ViewModel() {
 
@@ -22,8 +23,9 @@ abstract class BaseViewModel : ViewModel() {
 
     private fun inject(){
         when (this) {
-            //splash
             is MovieListViewModel -> injector.inject(this)
+
+            is MovieDetailViewModel -> injector.inject(this)
 
         }
     }

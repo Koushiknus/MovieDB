@@ -1,25 +1,29 @@
 package com.sample.moviedb.ui.model
 
-class Movie {
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-     var id: Long = 0
+@Parcelize
+data class Movie  (
 
-     val original_title: String? = ""
+    var id : Long ,
 
-     val overview: String? = ""
+     val original_title: String?,
 
-     val release_date: String? = ""
+     val overview: String? ,
 
-     val poster_path: String? = ""
+     val release_date: String? = "",
 
-     val popularity: Double = 0.0
+     val poster_path: String? = "",
 
-     var title: String? = null
+     val popularity: Double = 0.0,
 
-     val vote_average: Double = 0.0
+     var title: String? = null,
 
-     val vote_count: Long = 0
+     val vote_average: Double = 0.0,
+
+     val vote_count: Long = 0,
 
      val backdrop_path: String? = ""
 
-}
+): Parcelable

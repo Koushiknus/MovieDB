@@ -17,6 +17,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    androidExtensions {
+        experimental = true
+    }
+
     buildTypes {
         debug {
             debuggable true
@@ -76,8 +81,7 @@ dependencies {
 
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
-
-
+    implementation 'androidx.cardview:cardview:1.0.0'
 
 
     // ViewModel and LiveData life cycle

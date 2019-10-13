@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sample.moviedb.ui.MovieListViewModel
+import com.sample.moviedb.ui.moviedetail.MovieDetailViewModel
 import javax.inject.Singleton
 
 @Suppress("UNCHECKED_CAST")
@@ -14,6 +15,8 @@ class ViewModelFactory(context: Context) : ViewModelProvider.Factory {
         //Splash
         if(modelClass.isAssignableFrom(MovieListViewModel::class.java))
             return MovieListViewModel() as T
+        if(modelClass.isAssignableFrom(MovieDetailViewModel::class.java))
+            return MovieDetailViewModel() as T
 
 
         throw IllegalArgumentException("Unknown ViewModel class")
