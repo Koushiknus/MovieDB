@@ -2,6 +2,8 @@
 <layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.text.TextUtils"/>
+
         <variable
             name="movie"
             type="com.sample.moviedb.ui.model.Movie" />
@@ -120,7 +122,7 @@
                     android:scrollbars = "vertical"
                     android:layout_below="@+id/text_movie_overview_title"
                     android:paddingTop="@dimen/spacing_medium"
-                    android:text="@{movie.overview}"
+                    android:text='@{!TextUtils.isEmpty(movie.overview) &amp;&amp; movie.overview!=null ? movie.overview : "Not Available"  }'
                     tools:text="A plot synopsis (called overview in the api)" />
 
             </RelativeLayout>
