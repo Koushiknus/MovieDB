@@ -1,5 +1,6 @@
 package com.sample.moviedb.ui.moviedetail
 
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
@@ -65,6 +66,20 @@ class MovieDetailActivity : AppCompatActivity() {
 
             Log.v("RelatedResult",it.size.toString())
             mAdapter.setData(it)
+        })
+        mAdapter.mEndReached.observe(this, Observer {
+            Log.v("EndReached",it.toString())
+            mMovieDetailViewModel.mPageCount++
+            mMovieDetailViewModel.getListOfMovies(mMovieDetailViewModel.mPageCount)
+
+        })
+        mAdapter.mMovieClicked.observe(this, Observer {
+
+            Log.v("MovieReceived",it.original_title)
+            Intent(this, MovieDetailActivity::class.java).apply {
+                putExtra(Constants.MOVIE_ID,it)
+                startActivity(this)
+            }
         })
     }
 

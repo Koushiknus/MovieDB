@@ -29,5 +29,22 @@ class MovieDetailViewModel : BaseViewModel() {
                 mListofMovies.postValue(it)
             }
     }
+    fun getListOfMovies(mPageCount: Int) {
+        /* val result= Api.run {
+             getApiService().getAllMovies()
+                 .map(MovieResponse::getResults)
+                 .subscribeOn(Schedulers.io())
+                 .subscribe {
+                     Log.v("MovieSizeIs",it.size.toString())
+                 }
+         }*/
+        apiMethods!!.getAllMovies(this.mPageCount)
+            .map(MovieResponse::getResults)
+            .subscribeOn(Schedulers.io())
+            .subscribe {
+                Log.v("MovieSizeIs",it.size.toString())
+                mListofMovies.postValue(it)
+            }
+    }
 
 }
