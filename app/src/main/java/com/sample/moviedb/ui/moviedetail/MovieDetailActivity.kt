@@ -69,9 +69,13 @@ class MovieDetailActivity : AppCompatActivity() {
 
         mMovieDetailViewModel.mListofMovies.observe(this, Observer {
 
-            Log.v("RelatedResult",it.size.toString())
-            mAdapter.setData(it)
             progressBar.visibility = View.GONE
+            if(it.size>0){
+                mAdapter.setData(it)
+                view_no_movies.visibility = View.GONE
+            }else{
+                view_no_movies.visibility = View.VISIBLE
+            }
         })
         mAdapter.mEndReached.observe(this, Observer {
             Log.v("EndReached",it.toString())

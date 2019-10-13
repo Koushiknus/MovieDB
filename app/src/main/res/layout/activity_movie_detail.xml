@@ -2,7 +2,6 @@
 <layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="movie"
             type="com.sample.moviedb.ui.model.Movie" />
@@ -145,7 +144,7 @@
                     android:id="@+id/text_videos_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Similar Titles"
+                    android:text="@string/similar_titles"
                     android:textStyle="bold" />
 
 
@@ -166,8 +165,32 @@
 
             </RelativeLayout>
 
-        </androidx.cardview.widget.CardView>
+            <RelativeLayout
+                android:id="@+id/view_no_movies"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_no_movies"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"
+                    android:contentDescription="@string/no_icon_found"
+                    android:src="@mipmap/ic_launcher" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:gravity="center"
+                    android:text="@string/no_movie_found"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 </layout>
