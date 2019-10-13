@@ -11,15 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.sample.moviedb.R
+import com.sample.moviedb.base.Constants
 import com.sample.moviedb.model.Movie
 
 class MovieListAdapter(private val ctx : Context): RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
-    private val POSTER_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/"
-    private val POSTER_IMAGE_SIZE = "w780"
-
     private val mListOfMovies = ArrayList<Movie>()
-
     val mEndReached = MutableLiveData<Boolean>()
     var mMovieClicked  = MutableLiveData<Movie>()
 
@@ -63,7 +60,7 @@ class MovieListAdapter(private val ctx : Context): RecyclerView.Adapter<MovieLis
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.bindView(mListOfMovies[position],ctx,POSTER_IMAGE_BASE_URL,POSTER_IMAGE_SIZE)
+        holder.bindView(mListOfMovies[position],ctx,Constants.POSTER_IMAGE_BASE_URL,Constants.POSTER_IMAGE_SIZE)
         if(position == itemCount-1){
             mEndReached.value = true
         }
