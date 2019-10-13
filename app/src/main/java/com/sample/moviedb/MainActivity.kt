@@ -15,6 +15,5 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         mMovieListViewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(MovieListViewModel::class.java)
        // mMovieListViewModel.getListOfMovies()
-        mMovieListViewModel.getRelatedMovies()
     }
 }

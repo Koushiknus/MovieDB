@@ -1,55 +1,34 @@
 package com.sample.moviedb.ui.movieList
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.sample.moviedb.base.BaseViewModel
-import com.sample.moviedb.network.ApiMethods
+import com.sample.moviedb.ui.MovieListRepository
 import com.sample.moviedb.ui.model.Movie
-import com.sample.moviedb.ui.model.MovieResponse
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 class MovieListViewModel() : BaseViewModel() {
 
     val mListofMovies = MutableLiveData<ArrayList<Movie>>()
+    private  var mSubscription: Disposable? =null
 
-    @set: Inject
-    var apiMethods : ApiMethods? = null
+    @set:Inject
+    var movieListRepository : MovieListRepository? = null
 
     var mPageCount = 1
 
     fun getListOfMovies(mPageCount: Int) {
-       /* val result= Api.run {
-            getApiService().getAllMovies()
-                .map(MovieResponse::getResults)
-                .subscribeOn(Schedulers.io())
-                .subscribe {
-                    Log.v("MovieSizeIs",it.size.toString())
-                }
-        }*/
-        apiMethods!!.getAllMovies(this.mPageCount)
-            .map(MovieResponse::getResults)
-            .subscribeOn(Schedulers.io())
-            .subscribe {
-                Log.v("MovieSizeIs",it.size.toString())
-                mListofMovies.postValue(it)
-            }
+
+        mSubscription = movieListRepository?.getListOfMovies(mPageCount)?.subscribe( {
+            mListofMovies.postValue(it)
+        },{
+            //onFailure Handling
+        })
     }
 
-    fun getRelatedMovies(){
-    /*    val result= Api.run {
-            getApiService().getRelatedMovies(475557,3)
-                .map(MovieResponse::getResults)
-                .subscribeOn(Schedulers.io())
-                .subscribe {
-                    Log.v("RelatedMovieSizeIs",it.size.toString())
-                }
-        }*/
-        apiMethods!!.getRelatedMovies(475557,3)
-            .map(MovieResponse::getResults)
-            .subscribeOn(Schedulers.io())
-            .subscribe {
-                Log.v("RelatedMovieSizeIs",it.size.toString())
-            }
+    override fun onCleared() {
+        super.onCleared()
+        mSubscription?.dispose()
     }
+
 }
