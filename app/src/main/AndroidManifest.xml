@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.moviedetail.MovieDetailActivity"></activity>
+        <activity android:name=".ui.moviedetail.MovieDetailActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".ui.movieList.MovieListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
