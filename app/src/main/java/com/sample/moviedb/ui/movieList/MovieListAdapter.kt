@@ -3,50 +3,53 @@ package com.sample.moviedb.ui.movieList
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.sample.moviedb.R
 import com.sample.moviedb.base.Constants
+import com.sample.moviedb.databinding.MovieListBinding
 import com.sample.moviedb.model.Movie
+import kotlinx.android.synthetic.main.movie_list.view.*
 
-class MovieListAdapter(private val ctx : Context): RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
+class MovieListAdapter(private val ctx: Context) :
+    RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
     private val mListOfMovies = ArrayList<Movie>()
     val mEndReached = MutableLiveData<Boolean>()
-    var mMovieClicked  = MutableLiveData<Movie>()
+    var mMovieClicked = MutableLiveData<Movie>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.movie_list, parent, false)
-        return ViewHolder(itemView)
+
+        val binding = MovieListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
+
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ViewHolder(itemView: MovieListBinding) : RecyclerView.ViewHolder(itemView.root) {
 
-        val moviePoster = itemView.findViewById<ImageView>(R.id.image_movie_poster)
 
         fun bindView(
             movie: Movie,
             ctx: Context,
             posterImageBaseUrl: String,
             posterImageSize: String
-        ){
+        ) {
 
-            moviePoster.contentDescription = movie.title
+            itemView.image_movie_poster.contentDescription = movie.title
             Glide.with(ctx)
                 .load(posterImageBaseUrl + posterImageSize + movie.poster_path)
                 .placeholder(ColorDrawable(ctx.getResources().getColor(R.color.accent_material_light)))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .fitCenter()
-                .into(moviePoster)
+                .into(itemView.image_movie_poster)
 
         }
+
     }
+
     fun setData(data: MutableList<Movie>) {
         mListOfMovies.addAll(data)
         notifyDataSetChanged()
@@ -55,16 +58,21 @@ class MovieListAdapter(private val ctx : Context): RecyclerView.Adapter<MovieLis
 
 
     override fun getItemCount(): Int {
-      return  mListOfMovies.size
+        return mListOfMovies.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.bindView(mListOfMovies[position],ctx,Constants.POSTER_IMAGE_BASE_URL,Constants.POSTER_IMAGE_SIZE)
-        if(position == itemCount-1){
+        holder.bindView(
+            mListOfMovies[position],
+            ctx,
+            Constants.POSTER_IMAGE_BASE_URL,
+            Constants.POSTER_IMAGE_SIZE
+        )
+        if (position == itemCount - 1) {
             mEndReached.value = true
         }
-        holder.moviePoster.setOnClickListener {
+        holder.itemView.image_movie_poster.setOnClickListener {
             mMovieClicked.postValue(mListOfMovies[position])
         }
 

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <com.sample.moviedb.utils.ProportionalImageView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/image_movie_poster"
@@ -8,3 +9,4 @@
     android:contentDescription="@string/movie_image">
 
 </com.sample.moviedb.utils.ProportionalImageView>
+</layout>
