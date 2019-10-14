@@ -54,7 +54,7 @@ class MovieDetailActivity : AppCompatActivity() {
         movie_similar.adapter = mAdapter
         movie_similar.setHasFixedSize(true)
         movie_similar.layoutManager = mLayoutManager
-        movie_similar.setItemAnimator(DefaultItemAnimator())
+        movie_similar.itemAnimator = DefaultItemAnimator()
         movie_similar.addItemDecoration(
             ItemOffsetDecoration(
                 this,
@@ -96,7 +96,7 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
     private fun getIntentExtra(){
-       mMovie = intent.getParcelableExtra<Movie>(Constants.MOVIE_ID)
+       mMovie = intent.getParcelableExtra(Constants.MOVIE_ID)
         mMovie?.let {movie->
             setPoster(movie)
             mMovieDetailBinding.movie = movie
