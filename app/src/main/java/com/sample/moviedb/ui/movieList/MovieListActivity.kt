@@ -39,7 +39,7 @@ class MovieListActivity : AppCompatActivity() {
         movies_grid.adapter = mAdapter
         movies_grid.setHasFixedSize(true)
         movies_grid.layoutManager = mLayoutManager
-        movies_grid.setItemAnimator(DefaultItemAnimator())
+        movies_grid.itemAnimator = DefaultItemAnimator()
         movies_grid.addItemDecoration(
             ItemOffsetDecoration(
                 this,
@@ -49,7 +49,7 @@ class MovieListActivity : AppCompatActivity() {
 
         val columns = resources.getInteger(com.sample.moviedb.R.integer.movies_columns)
         gridLayoutManager = GridLayoutManager(this, columns)
-        movies_grid.setLayoutManager(gridLayoutManager)
+        movies_grid.layoutManager = gridLayoutManager
     }
 
     private fun initialObservers(){
