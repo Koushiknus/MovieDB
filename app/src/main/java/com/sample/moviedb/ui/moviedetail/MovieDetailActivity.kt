@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -28,27 +27,26 @@ import kotlinx.android.synthetic.main.layout_progressbar.*
 
 class MovieDetailActivity : AppCompatActivity() {
 
-    lateinit var mMovieDetailViewModel: MovieDetailViewModel
+    private lateinit var mMovieDetailViewModel: MovieDetailViewModel
     private val mAdapter = MovieListAdapter(this)
-    private var gridLayoutManager: GridLayoutManager? = null
-
-    var mMovie : Movie? =null
-    lateinit var mMovieDetailBinding : ActivityMovieDetailBinding
+    private var mGridLayoutManager: GridLayoutManager? = null
+    private lateinit var mMovieDetailBinding: ActivityMovieDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mMovieDetailBinding = DataBindingUtil.setContentView(this,R.layout.activity_movie_detail)
+        mMovieDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_movie_detail)
         initialData()
         initialObservers()
 
     }
 
-    private fun initialData(){
+    private fun initialData() {
         mMovieDetailViewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(
-            MovieDetailViewModel::class.java)
+            MovieDetailViewModel::class.java
+        )
         getIntentExtra()
         progressBar.visibility = View.VISIBLE
-        mMovieDetailViewModel.getRelatedMovies(mMovie!!.id)
+        mMovieDetailViewModel.getRelatedMovies(mMovieDetailViewModel.mMovie?.id ?: 0)
         text_movie_overview.movementMethod = ScrollingMovementMethod()
         val mLayoutManager = LinearLayoutManager(this)
         movie_similar.adapter = mAdapter
@@ -62,49 +60,46 @@ class MovieDetailActivity : AppCompatActivity() {
             )
         )
         val columns = resources.getInteger(R.integer.movies_columns)
-        gridLayoutManager = GridLayoutManager(this, columns)
-        movie_similar.layoutManager = gridLayoutManager
+        mGridLayoutManager = GridLayoutManager(this, columns)
+        movie_similar.layoutManager = mGridLayoutManager
 
     }
 
-    private fun initialObservers(){
+    private fun initialObservers() {
 
         mMovieDetailViewModel.mListofMovies.observe(this, Observer {
-
             progressBar.visibility = View.GONE
-            if(it.size>0){
+            if (it.size > 0) {
                 mAdapter.setData(it)
                 view_no_movies.visibility = View.GONE
-            }else{
+            } else {
                 view_no_movies.visibility = View.VISIBLE
             }
         })
         mAdapter.mEndReached.observe(this, Observer {
-            Log.v("DetailEndReached",it.toString())
             mMovieDetailViewModel.mPageCount++
             progressBar.visibility = View.VISIBLE
-
             mMovieDetailViewModel.getRelatedMovies(mMovieDetailViewModel.mMovieId)
 
         })
         mAdapter.mMovieClicked.observe(this, Observer {
             Intent(this, MovieDetailActivity::class.java).apply {
-                putExtra(Constants.MOVIE_ID,it)
+                putExtra(Constants.MOVIE_ID, it)
                 startActivity(this)
             }
         })
     }
 
-    private fun getIntentExtra(){
-       mMovie = intent.getParcelableExtra(Constants.MOVIE_ID)
-        mMovie?.let {movie->
+    private fun getIntentExtra() {
+        mMovieDetailViewModel.mMovie = intent.getParcelableExtra(Constants.MOVIE_ID)
+        mMovieDetailViewModel.mMovie?.let { movie ->
             setPoster(movie)
             mMovieDetailBinding.movie = movie
             mMovieDetailViewModel.mMovieId = movie.id
         }
     }
 
-    private fun setPoster(movie : Movie?){
+    private fun setPoster(movie: Movie?) {
         Glide.with(this)
             .load(Constants.POSTER_IMAGE_BASE_URL + Constants.POSTER_IMAGE_SIZE + movie?.poster_path)
             .placeholder(ColorDrawable(ContextCompat.getColor(this, R.color.accent_material_light)))

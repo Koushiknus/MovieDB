@@ -2,13 +2,15 @@ package com.sample.moviedb.ui.moviedetail
 
 import androidx.lifecycle.MutableLiveData
 import com.sample.moviedb.base.BaseViewModel
-import com.sample.moviedb.network.ApiMethods
 import com.sample.moviedb.model.Movie
+import com.sample.moviedb.network.ApiMethods
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 class MovieDetailViewModel : BaseViewModel() {
 
+
+    var mMovie : Movie? =null
     val mListofMovies = MutableLiveData<ArrayList<Movie>>()
     private  var mSubscription: Disposable? =null
 
