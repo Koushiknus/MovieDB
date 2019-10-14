@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MovieDb</string>
+    <string name="app_name">HooQ</string>
     <string name="no_icon_found">No icon found</string>
     <string name="no_movie_found">No movies found</string>
     <string name="movie_image">Movie Image</string>
