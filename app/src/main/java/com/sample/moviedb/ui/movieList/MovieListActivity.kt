@@ -22,7 +22,7 @@ class MovieListActivity : AppCompatActivity() {
 
     private lateinit var mMovieListViewModel : MovieListViewModel
     private val mAdapter = MovieListAdapter(this)
-    private var gridLayoutManager: GridLayoutManager? = null
+    private var mGridLayoutManager: GridLayoutManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +49,8 @@ class MovieListActivity : AppCompatActivity() {
         )
 
         val columns = resources.getInteger(com.sample.moviedb.R.integer.movies_columns)
-        gridLayoutManager = GridLayoutManager(this, columns)
-        movies_grid.layoutManager = gridLayoutManager
+        mGridLayoutManager = GridLayoutManager(this, columns)
+        movies_grid.layoutManager = mGridLayoutManager
     }
 
     private fun initialObservers(){

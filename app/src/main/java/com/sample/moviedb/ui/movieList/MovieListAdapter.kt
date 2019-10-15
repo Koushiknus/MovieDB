@@ -42,7 +42,14 @@ class MovieListAdapter(private val ctx: Context) :
             itemView.image_movie_poster.contentDescription = movie.title
             Glide.with(ctx)
                 .load(posterImageBaseUrl + posterImageSize + movie.poster_path)
-                .placeholder(ColorDrawable(ContextCompat.getColor(ctx,R.color.accent_material_light)))
+                .placeholder(
+                    ColorDrawable(
+                        ContextCompat.getColor(
+                            ctx,
+                            R.color.accent_material_light
+                        )
+                    )
+                )
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .fitCenter()
                 .into(itemView.image_movie_poster)

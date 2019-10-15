@@ -46,11 +46,11 @@
                     android:ellipsize="end"
                     android:fontFamily="sans-serif-condensed"
                     android:maxLines="3"
-                    android:paddingStart="8dp"
-                    android:paddingLeft="8dp"
-                    android:paddingTop="16dp"
-                    android:paddingEnd="8dp"
-                    android:paddingRight="8dp"
+                    android:paddingStart="@dimen/dp_8"
+                    android:paddingLeft="@dimen/dp_8"
+                    android:paddingTop="@dimen/dp_16"
+                    android:paddingEnd="@dimen/dp_8"
+                    android:paddingRight="@dimen/dp_8"
                     android:text="@{movie.title}"
                     tools:text="Original movie title" />
 
@@ -76,10 +76,10 @@
                     android:layout_marginBottom="@dimen/spacing_medium"
                     android:layout_toEndOf="@+id/image_movie_detail_poster"
                     android:layout_toRightOf="@+id/image_movie_detail_poster"
-                    android:paddingStart="8dp"
-                    android:paddingLeft="8dp"
-                    android:paddingEnd="8dp"
-                    android:paddingRight="8dp"
+                    android:paddingStart="@dimen/dp_8"
+                    android:paddingLeft="@dimen/dp_8"
+                    android:paddingEnd="@dimen/dp_8"
+                    android:paddingRight="@dimen/dp_8"
                     android:text="@{movie.release_date}"
                     tools:text="Release date: 08.10.2015" />
 
