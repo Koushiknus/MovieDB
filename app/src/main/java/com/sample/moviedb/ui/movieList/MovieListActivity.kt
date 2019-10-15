@@ -3,6 +3,7 @@ package com.sample.moviedb.ui.movieList
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -33,7 +34,7 @@ class MovieListActivity : AppCompatActivity() {
     private fun initialData(){
         mMovieListViewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(
             MovieListViewModel::class.java)
-        progressBar.visibility = View.VISIBLE
+        showOrHideProgress(View.VISIBLE)
         mMovieListViewModel.getListOfMovies(mMovieListViewModel.mPageCount)
         val mLayoutManager = LinearLayoutManager(this)
         movies_grid.adapter = mAdapter
@@ -54,13 +55,17 @@ class MovieListActivity : AppCompatActivity() {
 
     private fun initialObservers(){
        mMovieListViewModel.mListofMovies.observe(this, Observer {
-           progressBar.visibility = View.GONE
+           showOrHideProgress(View.GONE)
            mAdapter.setData(it)
 
        })
+        mMovieListViewModel.mErrorOccured.observe(this, Observer {
+            showOrHideProgress(View.GONE)
+            Toast.makeText(this,it.localizedMessage,Toast.LENGTH_LONG).show()
+        })
         mAdapter.mEndReached.observe(this, Observer {
             mMovieListViewModel.mPageCount++
-            progressBar.visibility = View.VISIBLE
+            showOrHideProgress(View.VISIBLE)
             mMovieListViewModel.getListOfMovies(mMovieListViewModel.mPageCount)
 
         })
@@ -70,6 +75,10 @@ class MovieListActivity : AppCompatActivity() {
                 startActivity(this)
             }
         })
+    }
+
+    private fun showOrHideProgress(visibilty : Int){
+        progressBar.visibility = visibilty
     }
 
 }

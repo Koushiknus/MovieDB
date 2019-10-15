@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -45,7 +46,7 @@ class MovieDetailActivity : AppCompatActivity() {
             MovieDetailViewModel::class.java
         )
         getIntentExtra()
-        progressBar.visibility = View.VISIBLE
+        showOrHideProgress(View.VISIBLE)
         mMovieDetailViewModel.getRelatedMovies(mMovieDetailViewModel.mMovie?.id ?: 0)
         text_movie_overview.movementMethod = ScrollingMovementMethod()
         val mLayoutManager = LinearLayoutManager(this)
@@ -68,7 +69,7 @@ class MovieDetailActivity : AppCompatActivity() {
     private fun initialObservers() {
 
         mMovieDetailViewModel.mListofMovies.observe(this, Observer {
-            progressBar.visibility = View.GONE
+            showOrHideProgress(View.GONE)
             if (it.size > 0) {
                 mAdapter.setData(it)
                 view_no_movies.visibility = View.GONE
@@ -76,9 +77,13 @@ class MovieDetailActivity : AppCompatActivity() {
                 view_no_movies.visibility = View.VISIBLE
             }
         })
+        mMovieDetailViewModel.mErrorOccured.observe(this, Observer {
+            showOrHideProgress(View.GONE)
+            Toast.makeText(this,it.localizedMessage,Toast.LENGTH_LONG).show()
+        })
         mAdapter.mEndReached.observe(this, Observer {
             mMovieDetailViewModel.mPageCount++
-            progressBar.visibility = View.VISIBLE
+            showOrHideProgress(View.VISIBLE)
             mMovieDetailViewModel.getRelatedMovies(mMovieDetailViewModel.mMovieId)
 
         })
@@ -107,5 +112,8 @@ class MovieDetailActivity : AppCompatActivity() {
             .fitCenter()
             .into(image_movie_detail_poster)
 
+    }
+    private fun showOrHideProgress(visibilty : Int){
+        progressBar.visibility = visibilty
     }
 }

@@ -24,6 +24,8 @@ class MovieDetailViewModel : BaseViewModel() {
 
     var mPageCount = 1
 
+    var mErrorOccured = MutableLiveData<Throwable>()
+
 
     fun getRelatedMovies(movieId : Long){
 
@@ -31,6 +33,7 @@ class MovieDetailViewModel : BaseViewModel() {
             mListofMovies.postValue(it)
         },{
             //error handling
+            mErrorOccured.postValue(it)
         })
 
     }
