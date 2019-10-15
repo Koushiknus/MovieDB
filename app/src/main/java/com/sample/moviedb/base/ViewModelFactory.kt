@@ -12,7 +12,6 @@ import javax.inject.Singleton
 class ViewModelFactory(context: Context) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        //Splash
         if(modelClass.isAssignableFrom(MovieListViewModel::class.java))
             return MovieListViewModel() as T
         if(modelClass.isAssignableFrom(MovieDetailViewModel::class.java))

@@ -24,9 +24,9 @@ object AppModule {
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
         val builder = OkHttpClient.Builder()
-            .connectTimeout(60, TimeUnit.SECONDS)
-            .writeTimeout(60, TimeUnit.SECONDS)
-            .readTimeout(60, TimeUnit.SECONDS)
+            .connectTimeout(Constants.TIME_OUT, TimeUnit.SECONDS)
+            .writeTimeout(Constants.TIME_OUT, TimeUnit.SECONDS)
+            .readTimeout(Constants.TIME_OUT, TimeUnit.SECONDS)
             .addInterceptor(loggingInterceptor)
             .addInterceptor(OkHttpProfilerInterceptor())
 
@@ -45,35 +45,5 @@ object AppModule {
             .build()
             .create(ApiMethods::class.java)
     }
-
-
-/*
-    @Reusable
-    @Provides
-    @JvmStatic
-    internal fun provideRequestOptions(): RequestOptions {
-        return RequestOptions
-            .placeholderOf(R.drawable.logo)
-            .error(R.drawable.logo)
-    }
-
-    @Reusable
-    @Provides
-    @JvmStatic
-    internal fun provideGlideInstance(
-        application: Application,
-        requestOptions: RequestOptions
-    ): RequestManager {
-        return Glide.with(application)
-            .setDefaultRequestOptions(requestOptions)
-    }
-
-    @Reusable
-    @Provides
-    @JvmStatic
-    internal fun provideAppDrawable(application: Application): Drawable? {
-        return ContextCompat.getDrawable(application, R.drawable.logo)
-    }*/
-
 
 }
