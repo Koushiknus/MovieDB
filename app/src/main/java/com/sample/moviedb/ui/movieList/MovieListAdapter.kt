@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -41,7 +42,7 @@ class MovieListAdapter(private val ctx: Context) :
             itemView.image_movie_poster.contentDescription = movie.title
             Glide.with(ctx)
                 .load(posterImageBaseUrl + posterImageSize + movie.poster_path)
-                .placeholder(ColorDrawable(ctx.getResources().getColor(R.color.accent_material_light)))
+                .placeholder(ColorDrawable(ContextCompat.getColor(ctx,R.color.accent_material_light)))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .fitCenter()
                 .into(itemView.image_movie_poster)

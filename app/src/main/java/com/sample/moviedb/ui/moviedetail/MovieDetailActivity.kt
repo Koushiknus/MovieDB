@@ -73,7 +73,7 @@ class MovieDetailActivity : AppCompatActivity() {
             if (it.size > 0) {
                 mAdapter.setData(it)
                 view_no_movies.visibility = View.GONE
-            } else {
+            } else if(it.isEmpty()&&mMovieDetailViewModel.mPageCount ==1) {
                 view_no_movies.visibility = View.VISIBLE
             }
         })
