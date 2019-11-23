@@ -13,9 +13,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.sample.moviedb.BuildConfig
 import com.sample.moviedb.R
 import com.sample.moviedb.base.Constants
 import com.sample.moviedb.base.ViewModelFactory
@@ -46,32 +46,18 @@ class MovieDetailActivity : AppCompatActivity() {
         )
         getIntentExtra()
         showOrHideProgress(View.VISIBLE)
-       // mMovieDetailViewModel.getRelatedMovies(mMovieDetailViewModel.mMovie?.id ?: 0)
         mMovieDetailViewModel.getMovieDetail(mMovieDetailViewModel.mMovie?.id ?: 0)
-
         text_movie_overview.movementMethod = ScrollingMovementMethod()
-        val mLayoutManager = LinearLayoutManager(this)
-    /*    movie_similar.adapter = mAdapter
-        movie_similar.setHasFixedSize(true)
-        movie_similar.layoutManager = mLayoutManager
-        movie_similar.itemAnimator = DefaultItemAnimator()
-        movie_similar.addItemDecoration(
-            ItemOffsetDecoration(
-                this,
-                R.dimen.movie_item_offset
-            )
-        )*/
         val columns = resources.getInteger(R.integer.movies_columns)
         mGridLayoutManager = GridLayoutManager(this, columns)
-      //  movie_similar.layoutManager = mGridLayoutManager
         btn_book_movie.setOnClickListener {
-            test()
+            navigateToCathay()
         }
 
     }
 
-    fun test(){
-        val uri: Uri = Uri.parse("https://www.cathaycineplexes.com.sg/")
+    fun navigateToCathay(){
+        val uri: Uri = Uri.parse(BuildConfig.CATHAY_URL)
         val intent = Intent(Intent.ACTION_VIEW, uri)
         startActivity(intent)
     }
