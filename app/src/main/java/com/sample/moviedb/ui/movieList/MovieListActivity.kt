@@ -36,6 +36,7 @@ class MovieListActivity : AppCompatActivity() {
             MovieListViewModel::class.java)
         showOrHideProgress(View.VISIBLE)
         mMovieListViewModel.getListOfMovies(mMovieListViewModel.mPageCount)
+        mMovieListViewModel.discoverMovies()
         val mLayoutManager = LinearLayoutManager(this)
         movies_grid.adapter = mAdapter
         movies_grid.setHasFixedSize(true)

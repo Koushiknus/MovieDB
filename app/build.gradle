@@ -32,6 +32,8 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), '../proguard.cfg'
             buildConfigField 'String', 'BASE_API_KEY', '"api_key=6022e324a5ec62a2105a6a12966d5f25&language=en-US"'
+            buildConfigField 'String', 'BASE_API_KEY2', '"api_key=6022e324a5ec62a2105a6a12966d5f25"'
+
 
 
         }
