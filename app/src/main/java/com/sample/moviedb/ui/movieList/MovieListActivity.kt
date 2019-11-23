@@ -2,7 +2,6 @@ package com.sample.moviedb.ui.movieList
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +16,6 @@ import com.sample.moviedb.ui.moviedetail.MovieDetailActivity
 import com.sample.moviedb.utils.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.activity_movie_list.*
 import kotlinx.android.synthetic.main.layout_progressbar.*
-import java.util.*
 
 
 class MovieListActivity : AppCompatActivity() {
@@ -54,8 +52,11 @@ class MovieListActivity : AppCompatActivity() {
         mGridLayoutManager = GridLayoutManager(this, columns)
         movies_grid.layoutManager = mGridLayoutManager
 
-       val test =  Locale.forLanguageTag("es").displayLanguage
-        Log.v("ValueIs",test)
+        swipe_refresh.setOnRefreshListener {
+            mMovieListViewModel.discoverMovies(mMovieListViewModel.mPageCount)
+            swipe_refresh.isRefreshing = false
+        }
+
     }
 
     private fun initialObservers(){
