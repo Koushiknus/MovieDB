@@ -47,7 +47,9 @@ class MovieDetailActivity : AppCompatActivity() {
         )
         getIntentExtra()
         showOrHideProgress(View.VISIBLE)
-        mMovieDetailViewModel.getRelatedMovies(mMovieDetailViewModel.mMovie?.id ?: 0)
+       // mMovieDetailViewModel.getRelatedMovies(mMovieDetailViewModel.mMovie?.id ?: 0)
+        mMovieDetailViewModel.getMovieDetail(mMovieDetailViewModel.mMovie?.id ?: 0)
+
         text_movie_overview.movementMethod = ScrollingMovementMethod()
         val mLayoutManager = LinearLayoutManager(this)
         movie_similar.adapter = mAdapter
@@ -84,7 +86,7 @@ class MovieDetailActivity : AppCompatActivity() {
         mAdapter.mEndReached.observe(this, Observer {
             mMovieDetailViewModel.mPageCount++
             showOrHideProgress(View.VISIBLE)
-            mMovieDetailViewModel.getRelatedMovies(mMovieDetailViewModel.mMovieId)
+            //mMovieDetailViewModel.getRelatedMovies(mMovieDetailViewModel.mMovieId)
 
         })
         mAdapter.mMovieClicked.observe(this, Observer {

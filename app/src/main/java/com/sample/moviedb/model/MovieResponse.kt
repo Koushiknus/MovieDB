@@ -8,5 +8,4 @@ class MovieResponse {
     fun getResults(): ArrayList<Movie> {
         return results
     }
-
 }

@@ -1,5 +1,6 @@
 package com.sample.moviedb.ui.moviedetail
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.sample.moviedb.base.BaseViewModel
 import com.sample.moviedb.model.Movie
@@ -36,6 +37,15 @@ class MovieDetailViewModel : BaseViewModel() {
             mErrorOccured.postValue(it)
         })
 
+    }
+
+    fun getMovieDetail(movieId : Long){
+        mSubscription =   mMovieDetailRepository?.getMovieDetail(movieId)?.subscribe({
+            Log.v("DurationIS",it.runtime.toString())
+        },{
+            //error handling
+            mErrorOccured.postValue(it)
+        })
     }
 
     override fun onCleared() {

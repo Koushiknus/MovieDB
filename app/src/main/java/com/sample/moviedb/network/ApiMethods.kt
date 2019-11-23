@@ -1,6 +1,7 @@
 package com.sample.moviedb.network
 
 import com.sample.moviedb.BuildConfig
+import com.sample.moviedb.model.MovieDetail
 import com.sample.moviedb.model.MovieResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -21,5 +22,8 @@ interface ApiMethods{
     fun discoverMovie(@Query("primary_release_date.lte")releaseDate : String,
                       @Query("sort_by")sortBy : String,
                       @Query("page") page : Int) : Observable<MovieResponse>
+
+    @GET("movie/{id}?"+BuildConfig.BASE_API_KEY)
+    fun getMovieDetail(@Path("id")  movieId :Long) : Observable<MovieDetail>
 
 }
