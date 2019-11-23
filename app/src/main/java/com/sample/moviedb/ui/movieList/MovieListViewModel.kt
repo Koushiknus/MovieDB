@@ -1,6 +1,5 @@
 package com.sample.moviedb.ui.movieList
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.sample.moviedb.base.BaseViewModel
 import com.sample.moviedb.model.Movie
@@ -29,10 +28,9 @@ class MovieListViewModel() : BaseViewModel() {
         })
     }
 
-    fun discoverMovies(){
+    fun discoverMovies(mPageCount: Int){
 
-        mSubscription = movieListRepository?.discoverMovies()?.subscribeOn(Schedulers.io())?.subscribe( {
-            Log.v("ResultReceived",it.size.toString())
+        mSubscription = movieListRepository?.discoverMovies(mPageCount)?.subscribeOn(Schedulers.io())?.subscribe( {
             mListofMovies.postValue(it)
 
         },{

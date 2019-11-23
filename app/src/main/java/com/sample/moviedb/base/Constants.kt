@@ -7,5 +7,6 @@ object  Constants {
      val POSTER_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/"
      val POSTER_IMAGE_SIZE = "w780"
      val TIME_OUT = 60L
+     val RELEASE_DATE = "release_date"
 
 }
