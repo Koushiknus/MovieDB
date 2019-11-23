@@ -6,24 +6,26 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Movie  (
 
-    var id : Long ,
+ var id : Long,
 
-     val original_title: String?,
+ val original_title: String?,
 
-     val overview: String? ,
+ val overview: String?,
 
-     val release_date: String? = "",
+ val release_date: String? = "",
 
-     val poster_path: String? = "",
+ val poster_path: String? = "",
 
-     val popularity: Double = 0.0,
+ val popularity: Double = 0.0,
 
-     var title: String? = null,
+ val original_language : String?,
 
-     val vote_average: Double = 0.0,
+ var title: String? = null,
 
-     val vote_count: Long = 0,
+ val vote_average: Double = 0.0,
 
-     val backdrop_path: String? = ""
+ val vote_count: Long = 0,
+
+ val backdrop_path: String? = ""
 
 ): Parcelable

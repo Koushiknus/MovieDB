@@ -2,6 +2,7 @@ package com.sample.moviedb.ui.movieList
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ import com.sample.moviedb.ui.moviedetail.MovieDetailActivity
 import com.sample.moviedb.utils.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.activity_movie_list.*
 import kotlinx.android.synthetic.main.layout_progressbar.*
+import java.util.*
 
 
 class MovieListActivity : AppCompatActivity() {
@@ -51,6 +53,9 @@ class MovieListActivity : AppCompatActivity() {
         val columns = resources.getInteger(com.sample.moviedb.R.integer.movies_columns)
         mGridLayoutManager = GridLayoutManager(this, columns)
         movies_grid.layoutManager = mGridLayoutManager
+
+       val test =  Locale.forLanguageTag("es").displayLanguage
+        Log.v("ValueIs",test)
     }
 
     private fun initialObservers(){

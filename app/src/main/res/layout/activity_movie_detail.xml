@@ -3,6 +3,7 @@
 
     <data>
         <import type="android.text.TextUtils"/>
+        <import type="java.util.Locale"/>
 
         <variable
             name="movie"
@@ -64,8 +65,8 @@
                     android:layout_toRightOf="@+id/image_movie_detail_poster"
                     android:fontFamily="sans-serif-light"
                     android:gravity="center"
-                    android:text='@{String.format("%.1f", movie.vote_average)}'
-                    android:textSize="42sp"
+                    android:text='@{String.format("%.1f", movie.vote_average)+ "(" + Locale.forLanguageTag(movie.original_language).displayLanguage +")"}'
+                    android:textSize="20sp"
                     tools:text="10.0" />
 
                 <TextView
