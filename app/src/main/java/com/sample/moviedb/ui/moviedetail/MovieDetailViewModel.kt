@@ -13,6 +13,7 @@ class MovieDetailViewModel : BaseViewModel() {
 
     var mMovie : Movie? =null
     val mListofMovies = MutableLiveData<ArrayList<Movie>>()
+    val mDuration = MutableLiveData<String>()
     private  var mSubscription: Disposable? =null
 
     @set:Inject
@@ -42,10 +43,15 @@ class MovieDetailViewModel : BaseViewModel() {
     fun getMovieDetail(movieId : Long){
         mSubscription =   mMovieDetailRepository?.getMovieDetail(movieId)?.subscribe({
             Log.v("DurationIS",it.runtime.toString())
+            mDuration.postValue(it.runtime.toString())
         },{
             //error handling
             mErrorOccured.postValue(it)
         })
+    }
+
+    fun getFormattedDuration( duration: String): String {
+        return "Duration : $duration Minutes"
     }
 
     override fun onCleared() {

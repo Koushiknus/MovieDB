@@ -79,6 +79,10 @@ class MovieDetailActivity : AppCompatActivity() {
                 view_no_movies.visibility = View.VISIBLE
             }
         })
+        mMovieDetailViewModel.mDuration.observe(this, Observer {
+            showOrHideProgress(View.GONE)
+            mMovieDetailBinding.textMovieDuration.text = mMovieDetailViewModel.getFormattedDuration(it)
+        })
         mMovieDetailViewModel.mErrorOccured.observe(this, Observer {
             showOrHideProgress(View.GONE)
             Toast.makeText(this,it.localizedMessage,Toast.LENGTH_LONG).show()

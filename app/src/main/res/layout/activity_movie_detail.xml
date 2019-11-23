@@ -70,7 +70,7 @@
                     tools:text="10.0" />
 
                 <TextView
-                    android:id="@+id/text_movie_release_date"
+                    android:id="@+id/text_movie_duration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/image_movie_detail_poster"
@@ -81,7 +81,6 @@
                     android:paddingLeft="@dimen/dp_8"
                     android:paddingEnd="@dimen/dp_8"
                     android:paddingRight="@dimen/dp_8"
-                    android:text="@{movie.release_date}"
                     tools:text="Release date: 08.10.2015" />
 
             </RelativeLayout>
