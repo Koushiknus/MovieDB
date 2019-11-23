@@ -23,7 +23,7 @@ interface ApiMethods{
                       @Query("sort_by")sortBy : String,
                       @Query("page") page : Int) : Observable<MovieResponse>
 
-    @GET("movie/{id}?"+BuildConfig.BASE_API_KEY)
+    @GET("movie/{id}?"+BuildConfig.BASE_API_KEY2)
     fun getMovieDetail(@Path("id")  movieId :Long) : Observable<MovieDetail>
 
 }

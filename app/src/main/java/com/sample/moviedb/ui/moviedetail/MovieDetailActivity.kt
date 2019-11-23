@@ -2,6 +2,7 @@ package com.sample.moviedb.ui.moviedetail
 
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.View
@@ -11,7 +12,6 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -22,9 +22,8 @@ import com.sample.moviedb.base.ViewModelFactory
 import com.sample.moviedb.databinding.ActivityMovieDetailBinding
 import com.sample.moviedb.model.Movie
 import com.sample.moviedb.ui.movieList.MovieListAdapter
-import com.sample.moviedb.utils.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.activity_movie_detail.*
-import kotlinx.android.synthetic.main.layout_progressbar.*
+
 
 class MovieDetailActivity : AppCompatActivity() {
 
@@ -52,7 +51,7 @@ class MovieDetailActivity : AppCompatActivity() {
 
         text_movie_overview.movementMethod = ScrollingMovementMethod()
         val mLayoutManager = LinearLayoutManager(this)
-        movie_similar.adapter = mAdapter
+    /*    movie_similar.adapter = mAdapter
         movie_similar.setHasFixedSize(true)
         movie_similar.layoutManager = mLayoutManager
         movie_similar.itemAnimator = DefaultItemAnimator()
@@ -61,11 +60,20 @@ class MovieDetailActivity : AppCompatActivity() {
                 this,
                 R.dimen.movie_item_offset
             )
-        )
+        )*/
         val columns = resources.getInteger(R.integer.movies_columns)
         mGridLayoutManager = GridLayoutManager(this, columns)
-        movie_similar.layoutManager = mGridLayoutManager
+      //  movie_similar.layoutManager = mGridLayoutManager
+        btn_book_movie.setOnClickListener {
+            test()
+        }
 
+    }
+
+    fun test(){
+        val uri: Uri = Uri.parse("https://www.cathaycineplexes.com.sg/")
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        startActivity(intent)
     }
 
     private fun initialObservers() {
@@ -74,9 +82,9 @@ class MovieDetailActivity : AppCompatActivity() {
             showOrHideProgress(View.GONE)
             if (it.size > 0) {
                 mAdapter.setData(it)
-                view_no_movies.visibility = View.GONE
+              //  view_no_movies.visibility = View.GONE
             } else if(it.isEmpty()&&mMovieDetailViewModel.mPageCount ==1) {
-                view_no_movies.visibility = View.VISIBLE
+             //   view_no_movies.visibility = View.VISIBLE
             }
         })
         mMovieDetailViewModel.mDuration.observe(this, Observer {
@@ -120,6 +128,6 @@ class MovieDetailActivity : AppCompatActivity() {
 
     }
     private fun showOrHideProgress(visibilty : Int){
-        progressBar.visibility = visibilty
+//        progressBar.visibility = visibilty
     }
 }
