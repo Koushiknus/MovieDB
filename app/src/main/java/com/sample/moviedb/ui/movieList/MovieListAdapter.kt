@@ -53,6 +53,8 @@ class MovieListAdapter(private val ctx: Context) :
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .fitCenter()
                 .into(itemView.image_movie_poster)
+            itemView.title.text = movie.title
+            itemView.txt_popularity.text = movie.popularity?.toString()
 
         }
 
