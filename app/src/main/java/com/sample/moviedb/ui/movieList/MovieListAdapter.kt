@@ -61,10 +61,8 @@ class MovieListAdapter(private val ctx: Context) :
     }
 
     fun setData(data: MutableList<Movie>) {
-
         mListOfMovies.addAll(data)
         notifyDataSetChanged()
-
     }
 
 
