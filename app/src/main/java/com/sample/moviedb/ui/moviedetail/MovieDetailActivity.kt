@@ -68,7 +68,7 @@ class MovieDetailActivity : AppCompatActivity() {
                 mMovieDetailViewModel.getFormattedDuration(it)
         })
         mMovieDetailViewModel.mErrorOccured.observe(this, Observer {
-            Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show()
+            mMovieDetailBinding.textMovieDuration.text = getString(R.string.duration_not_available)
         })
         mAdapter.mEndReached.observe(this, Observer {
             mMovieDetailViewModel.mPageCount++

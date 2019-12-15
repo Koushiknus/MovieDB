@@ -8,5 +8,6 @@
     <string name="similar_titles">Similar Titles</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="book">Book</string>
+    <string name="duration_not_available">Duration is not available</string>
 
 </resources>
