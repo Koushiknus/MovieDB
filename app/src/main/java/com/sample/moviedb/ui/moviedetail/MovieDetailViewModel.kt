@@ -9,20 +9,16 @@ import javax.inject.Inject
 
 class MovieDetailViewModel : BaseViewModel() {
     var mMovie: Movie? = null
-    val mListofMovies = MutableLiveData<ArrayList<Movie>>()
     val mDuration = MutableLiveData<String>()
     private var mSubscription: Disposable? = null
 
     @set:Inject
     var mMovieDetailRepository: MovieDetailRepository? = null
-
     var mMovieId: Long = 0L
 
     @set: Inject
     var apiMethods: ApiMethods? = null
-
     var mPageCount = 1
-
     var mErrorOccured = MutableLiveData<Throwable>()
 
 
