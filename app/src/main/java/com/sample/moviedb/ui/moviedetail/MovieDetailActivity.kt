@@ -23,6 +23,7 @@ import com.sample.moviedb.databinding.ActivityMovieDetailBinding
 import com.sample.moviedb.model.Movie
 import com.sample.moviedb.ui.movieList.MovieListAdapter
 import kotlinx.android.synthetic.main.activity_movie_detail.*
+import kotlinx.android.synthetic.main.activity_movie_list.*
 
 
 class MovieDetailActivity : AppCompatActivity() {
@@ -68,9 +69,9 @@ class MovieDetailActivity : AppCompatActivity() {
             showOrHideProgress(View.GONE)
             if (it.size > 0) {
                 mAdapter.setData(it)
-              //  view_no_movies.visibility = View.GONE
+                view_no_movies.visibility = View.GONE
             } else if(it.isEmpty()&&mMovieDetailViewModel.mPageCount ==1) {
-             //   view_no_movies.visibility = View.VISIBLE
+               view_no_movies.visibility = View.VISIBLE
             }
         })
         mMovieDetailViewModel.mDuration.observe(this, Observer {

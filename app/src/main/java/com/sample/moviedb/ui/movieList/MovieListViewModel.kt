@@ -19,15 +19,6 @@ class MovieListViewModel() : BaseViewModel() {
 
     var mPageCount = 1
 
-    fun getListOfMovies(mPageCount: Int) {
-
-        mSubscription = movieListRepository?.getListOfMovies(mPageCount)?.subscribeOn(Schedulers.io())?.subscribe( {
-            mListofMovies.postValue(it)
-        },{
-            mErrorOccured.postValue(it)
-        })
-    }
-
     fun discoverMovies(mPageCount: Int){
 
         mSubscription = movieListRepository?.discoverMovies(mPageCount)?.subscribeOn(Schedulers.io())?.subscribe( {
