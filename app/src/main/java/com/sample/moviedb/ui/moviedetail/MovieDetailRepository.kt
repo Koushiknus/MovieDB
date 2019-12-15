@@ -26,7 +26,7 @@ class MovieDetailRepository : BaseRepository() {
     }
 
     fun getMovieDetail(movieId : Long): Observable<MovieDetail>? {
-        mApiMethods?.let {apiMethods ->
+       mApiMethods?.let {apiMethods ->
             return   apiMethods.getMovieDetail(movieId)
                 .subscribeOn(Schedulers.io())
         }  ?: run {

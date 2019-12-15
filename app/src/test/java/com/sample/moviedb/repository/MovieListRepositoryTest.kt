@@ -15,25 +15,17 @@ import org.mockito.Mockito
 import javax.inject.Inject
 
 @ExtendWith(InstantExecutorExtension::class)
-class MovieListRepositoryTest : BaseRepository() {
+class MovieListRepositoryTest {
 
+    var movieListRepository : MovieListRepository? = MovieListRepository()
 
-
-    var movieListRepository : MovieListRepository? = null
-
-
-    @BeforeEach
-    fun initEach() {
-    }
 
     @Test
     fun discoverMovies() {
-        movieListRepository = MovieListRepository()
         val results  = movieListRepository?.discoverMovies(1)
         val testObserver : TestObserver<ArrayList<Movie>>  =  results!!.test()
         testObserver.assertSubscribed()
         testObserver.assertNoErrors()
         testObserver.assertNoTimeout()
-
     }
 }
