@@ -46,7 +46,6 @@ class MovieDetailActivity : AppCompatActivity() {
             MovieDetailViewModel::class.java
         )
         getIntentExtra()
-        showOrHideProgress(View.VISIBLE)
         mMovieDetailViewModel.getMovieDetail(mMovieDetailViewModel.mMovie?.id ?: 0)
         text_movie_overview.movementMethod = ScrollingMovementMethod()
         val columns = resources.getInteger(R.integer.movies_columns)
@@ -57,36 +56,22 @@ class MovieDetailActivity : AppCompatActivity() {
 
     }
 
-    fun navigateToCathay(){
+    private fun navigateToCathay() {
         val uri: Uri = Uri.parse(BuildConfig.CATHAY_URL)
         val intent = Intent(Intent.ACTION_VIEW, uri)
         startActivity(intent)
     }
 
     private fun initialObservers() {
-
-        mMovieDetailViewModel.mListofMovies.observe(this, Observer {
-            showOrHideProgress(View.GONE)
-            if (it.size > 0) {
-                mAdapter.setData(it)
-                view_no_movies.visibility = View.GONE
-            } else if(it.isEmpty()&&mMovieDetailViewModel.mPageCount ==1) {
-               view_no_movies.visibility = View.VISIBLE
-            }
-        })
         mMovieDetailViewModel.mDuration.observe(this, Observer {
-            showOrHideProgress(View.GONE)
-            mMovieDetailBinding.textMovieDuration.text = mMovieDetailViewModel.getFormattedDuration(it)
+            mMovieDetailBinding.textMovieDuration.text =
+                mMovieDetailViewModel.getFormattedDuration(it)
         })
         mMovieDetailViewModel.mErrorOccured.observe(this, Observer {
-            showOrHideProgress(View.GONE)
-            Toast.makeText(this,it.localizedMessage,Toast.LENGTH_LONG).show()
+            Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show()
         })
         mAdapter.mEndReached.observe(this, Observer {
             mMovieDetailViewModel.mPageCount++
-            showOrHideProgress(View.VISIBLE)
-            //mMovieDetailViewModel.getRelatedMovies(mMovieDetailViewModel.mMovieId)
-
         })
         mAdapter.mMovieClicked.observe(this, Observer {
             Intent(this, MovieDetailActivity::class.java).apply {
@@ -114,7 +99,5 @@ class MovieDetailActivity : AppCompatActivity() {
             .into(image_movie_detail_poster)
 
     }
-    private fun showOrHideProgress(visibilty : Int){
-//        progressBar.visibility = visibilty
-    }
+
 }

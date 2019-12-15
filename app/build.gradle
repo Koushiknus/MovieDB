@@ -34,6 +34,8 @@ android {
             buildConfigField 'String', 'BASE_API_KEY', '"api_key=6022e324a5ec62a2105a6a12966d5f25&language=en-US"'
             buildConfigField 'String', 'BASE_API_KEY2', '"api_key=6022e324a5ec62a2105a6a12966d5f25"'
             buildConfigField 'String', 'CATHAY_URL', '"https://www.cathaycineplexes.com.sg/"'
+            buildConfigField 'String', 'TEST_DATE','"2017-12-31"'
+
 
 
         }
@@ -41,6 +43,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField 'String', 'BASE_API_KEY', '"api_key=6022e324a5ec62a2105a6a12966d5f25&language=en-US"'
+            buildConfigField 'String', 'BASE_API_KEY2', '"api_key=6022e324a5ec62a2105a6a12966d5f25"'
+            buildConfigField 'String', 'CATHAY_URL', '"https://www.cathaycineplexes.com.sg/"'
+            buildConfigField 'String', 'TEST_DATE','"2016-12-31"'
+
 
         }
     }

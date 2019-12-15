@@ -1,5 +1,6 @@
 package com.sample.moviedb.ui.movieList
 
+import com.sample.moviedb.BuildConfig
 import com.sample.moviedb.base.BaseRepository
 import com.sample.moviedb.base.Constants
 import com.sample.moviedb.model.Movie
@@ -15,20 +16,10 @@ class MovieListRepository : BaseRepository(){
  @set: Inject
  var mApiMethods : ApiMethods? = null
 
- fun getListOfMovies(mPageCount: Int): Observable<ArrayList<Movie>>? {
-    mApiMethods?.let { apiMethods ->
-        return  apiMethods.getAllMovies(mPageCount)
-            .map(MovieResponse::getResults)
-            .subscribeOn(Schedulers.io())
-
-    }?: run {
-        return null
-    }
- }
     fun discoverMovies(mPageCount: Int): Observable<ArrayList<Movie>>? {
 
         mApiMethods?.let{ apiMethods ->
-            return  apiMethods.discoverMovie("2016-12-31",Constants.RELEASE_DATE,mPageCount)
+            return  apiMethods.discoverMovie(BuildConfig.TEST_DATE,Constants.RELEASE_DATE,mPageCount)
                 .map(MovieResponse::getResults)
                 .subscribeOn(Schedulers.io())
 
