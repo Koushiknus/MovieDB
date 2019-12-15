@@ -14,7 +14,7 @@ internal class MovieDetailRepositoryTest {
 
     @Test
     fun getMovieDetail() {
-        val results = movieDetailRepository.getMovieDetail(1)
+        val results = movieDetailRepository.getMovieDetail(597993)
         val testObserver : TestObserver<MovieDetail> =  results!!.test()
         testObserver.assertSubscribed()
         testObserver.assertNoErrors()

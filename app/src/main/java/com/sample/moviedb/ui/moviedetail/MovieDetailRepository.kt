@@ -15,16 +15,6 @@ class MovieDetailRepository : BaseRepository() {
     @set: Inject
     var mApiMethods : ApiMethods? = null
 
-    fun getRelatedMovies(movieId : Long,pageCount : Int): Observable<ArrayList<Movie>>? {
-              mApiMethods?.let {apiMethods ->
-                  return   apiMethods.getRelatedMovies(movieId,pageCount)
-                      .map(MovieResponse::getResults)
-                      .subscribeOn(Schedulers.io())
-              }  ?: run {
-                  return null
-              }
-    }
-
     fun getMovieDetail(movieId : Long): Observable<MovieDetail>? {
        mApiMethods?.let {apiMethods ->
             return   apiMethods.getMovieDetail(movieId)
