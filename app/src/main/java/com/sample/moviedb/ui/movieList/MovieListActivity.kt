@@ -2,7 +2,9 @@ package com.sample.moviedb.ui.movieList
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -10,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sample.moviedb.R
 import com.sample.moviedb.base.Constants
 import com.sample.moviedb.base.ViewModelFactory
 import com.sample.moviedb.ui.moviedetail.MovieDetailActivity
@@ -23,6 +26,7 @@ class MovieListActivity : AppCompatActivity() {
     private lateinit var mMovieListViewModel : MovieListViewModel
     private val mAdapter = MovieListAdapter(this)
     private var mGridLayoutManager: GridLayoutManager? = null
+    private var mSearchView : androidx.appcompat.widget.SearchView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,6 +80,28 @@ class MovieListActivity : AppCompatActivity() {
             }
         })
     }
+    private val mSearchViewListener = object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
+        override fun onQueryTextSubmit(query: String?): Boolean {
+            mSearchView?.clearFocus()
+            return true
+        }
+
+        override fun onQueryTextChange(newText: String?): Boolean {
+            // view model code
+            return true
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater?.inflate(R.menu.menu_movie_list,menu)
+        val searchItem = menu?.findItem(R.id.action_search)
+        mSearchView = searchItem?.actionView as androidx.appcompat.widget.SearchView
+        mSearchView?.setOnQueryTextListener(mSearchViewListener)
+        return super.onCreateOptionsMenu(menu)
+
+    }
+
+
 
     private fun showOrHideProgress(visibilty : Int){
         progressBar.visibility = visibilty
