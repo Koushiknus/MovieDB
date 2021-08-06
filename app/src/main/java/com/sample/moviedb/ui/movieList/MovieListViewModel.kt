@@ -19,14 +19,23 @@ class MovieListViewModel() : BaseViewModel() {
 
     var mPageCount = 1
 
-    fun discoverMovies(mPageCount: Int){
+    fun getTopMovies(mPageCount: Int){
 
-        mSubscription = movieListRepository?.discoverMovies(mPageCount)?.subscribeOn(Schedulers.io())?.subscribe( {
+        mSubscription = movieListRepository?.getTopMovies(mPageCount)?.subscribeOn(Schedulers.io())?.subscribe( {
             mListofMovies.postValue(it)
+
 
         },{
             mErrorOccured.postValue(it)
         })
+    }
+
+    fun sortMovieByName(movieList :ArrayList<Movie>): List<Movie> {
+       return movieList.sortedBy { list -> list.name}
+    }
+
+    fun sortMovieByDate(movieList :ArrayList<Movie>) : List<Movie>{
+        return movieList.sortedBy { list ->list.release_date }
     }
 
     override fun onCleared() {

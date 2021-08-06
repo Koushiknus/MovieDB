@@ -53,7 +53,7 @@
                     android:paddingTop="@dimen/dp_16"
                     android:paddingEnd="@dimen/dp_8"
                     android:paddingRight="@dimen/dp_8"
-                    android:text="@{movie.title}"
+                    android:text="@{movie.name}"
                     tools:text="Original movie title" />
 
                 <TextView
@@ -146,6 +146,6 @@
             android:textStyle="bold"
             app:fontFamily="sans-serif" />
 
-        </RelativeLayout>
+    </RelativeLayout>
 
 </layout>

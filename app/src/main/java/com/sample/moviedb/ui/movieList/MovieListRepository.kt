@@ -16,10 +16,10 @@ class MovieListRepository : BaseRepository(){
  @set: Inject
  var mApiMethods : ApiMethods? = null
 
-    fun discoverMovies(mPageCount: Int): Observable<ArrayList<Movie>>? {
+    fun getTopMovies(mPageCount: Int): Observable<ArrayList<Movie>>? {
 
         mApiMethods?.let{ apiMethods ->
-            return  apiMethods.discoverMovie(BuildConfig.TEST_DATE,Constants.RELEASE_DATE,mPageCount)
+            return  apiMethods.getTopRelated(mPageCount)
                 .map(MovieResponse::getResults)
                 .subscribeOn(Schedulers.io())
 

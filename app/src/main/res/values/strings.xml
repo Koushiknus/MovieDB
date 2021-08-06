@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ShopBack</string>
+    <string name="app_name">Movie Db</string>
     <string name="no_icon_found">No icon found</string>
     <string name="no_movie_found">No movies found</string>
     <string name="movie_image">Movie Image</string>
@@ -10,5 +10,11 @@
     <string name="book">Book</string>
     <string name="duration_not_available">Duration is not available</string>
     <string name="popularity">Popularity</string>
+    <string-array name="planets_array">
+        <item>Order By</item>
+        <item>Name</item>
+        <item>Time</item>
+
+    </string-array>
 
 </resources>

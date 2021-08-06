@@ -20,7 +20,7 @@ data class Movie  (
 
  val original_language : String?,
 
- var title: String? = null,
+ var name: String? = null,
 
  val vote_average: Double = 0.0,
 

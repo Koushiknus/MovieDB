@@ -14,6 +14,8 @@ import com.sample.moviedb.base.Constants
 import com.sample.moviedb.databinding.MovieListBinding
 import com.sample.moviedb.model.Movie
 import kotlinx.android.synthetic.main.movie_list.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MovieListAdapter(private val ctx: Context) :
     RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
@@ -39,7 +41,7 @@ class MovieListAdapter(private val ctx: Context) :
             posterImageSize: String
         ) {
 
-            itemView.image_movie_poster.contentDescription = movie.title
+            itemView.image_movie_poster.contentDescription = movie.name
             Glide.with(ctx)
                 .load(posterImageBaseUrl + posterImageSize + movie.poster_path)
                 .placeholder(
@@ -53,7 +55,7 @@ class MovieListAdapter(private val ctx: Context) :
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .fitCenter()
                 .into(itemView.image_movie_poster)
-            itemView.title.text = movie.title
+            itemView.title.text = movie.name
             itemView.txt_popularity.text = movie.popularity?.toString()
 
         }
@@ -61,6 +63,7 @@ class MovieListAdapter(private val ctx: Context) :
     }
 
     fun setData(data: MutableList<Movie>) {
+        //Collections.sort(data)
         mListOfMovies.addAll(data)
         notifyDataSetChanged()
     }

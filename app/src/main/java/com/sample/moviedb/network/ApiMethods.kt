@@ -18,6 +18,9 @@ interface ApiMethods{
     fun getRelatedMovies(@Path("id")  movieId :Long,
                          @Query("page")page : Int) : Observable<MovieResponse>
 
+    @GET("tv/top_rated?"+BuildConfig.BASE_API_KEY)
+    fun getTopRelated(@Query("page")page : Int) : Observable<MovieResponse>
+
     @GET("discover/movie?"+BuildConfig.BASE_API_KEY2)
     fun discoverMovie(@Query("primary_release_date.lte")releaseDate : String,
                       @Query("sort_by")sortBy : String,
