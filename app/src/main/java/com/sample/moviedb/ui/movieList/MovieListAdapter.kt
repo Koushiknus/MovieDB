@@ -14,13 +14,12 @@ import com.sample.moviedb.base.Constants
 import com.sample.moviedb.databinding.MovieListBinding
 import com.sample.moviedb.model.Movie
 import kotlinx.android.synthetic.main.movie_list.view.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class MovieListAdapter(private val ctx: Context) :
     RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
-    private val mListOfMovies = ArrayList<Movie>()
+     val mListOfMovies = ArrayList<Movie>()
     val mEndReached = MutableLiveData<Boolean>()
     var mMovieClicked = MutableLiveData<Movie>()
 
@@ -64,10 +63,10 @@ class MovieListAdapter(private val ctx: Context) :
 
     fun setData(data: MutableList<Movie>) {
         //Collections.sort(data)
+        mListOfMovies.clear()
         mListOfMovies.addAll(data)
         notifyDataSetChanged()
     }
-
 
     override fun getItemCount(): Int {
         return mListOfMovies.size

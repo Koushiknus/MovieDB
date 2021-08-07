@@ -11,7 +11,6 @@
     <string name="duration_not_available">Duration is not available</string>
     <string name="popularity">Popularity</string>
     <string-array name="planets_array">
-        <item>Order By</item>
         <item>Name</item>
         <item>Time</item>
 

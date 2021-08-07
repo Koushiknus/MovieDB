@@ -2,9 +2,11 @@ package com.sample.moviedb.ui.movieList
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
@@ -18,13 +20,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sample.moviedb.R
 import com.sample.moviedb.base.Constants
 import com.sample.moviedb.base.ViewModelFactory
+import com.sample.moviedb.model.Movie
 import com.sample.moviedb.ui.moviedetail.MovieDetailActivity
 import com.sample.moviedb.utils.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.activity_movie_list.*
 import kotlinx.android.synthetic.main.layout_progressbar.*
 
 
-class MovieListActivity : AppCompatActivity() {
+class MovieListActivity : AppCompatActivity(),AdapterView.OnItemSelectedListener {
 
     private lateinit var mMovieListViewModel : MovieListViewModel
     private val mAdapter = MovieListAdapter(this)
@@ -32,7 +35,7 @@ class MovieListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.sample.moviedb.R.layout.activity_movie_list)
+        setContentView(R.layout.activity_movie_list)
         initialData()
         initialObservers()
     }
@@ -68,20 +71,19 @@ class MovieListActivity : AppCompatActivity() {
     private fun initialObservers(){
        mMovieListViewModel.mListofMovies.observe(this, Observer {
            showOrHideProgress(View.GONE)
-           val updatedList = mMovieListViewModel.sortMovieByDate(it).toMutableList()
-           mAdapter.setData(updatedList)
+           mAdapter.setData(it.sortedBy { it->it.name }.toMutableList())
 
        })
         mMovieListViewModel.mErrorOccured.observe(this, Observer {
             showOrHideProgress(View.GONE)
             Toast.makeText(this,it.localizedMessage,Toast.LENGTH_LONG).show()
         })
-        mAdapter.mEndReached.observe(this, Observer {
+       /* mAdapter.mEndReached.observe(this, Observer {
             mMovieListViewModel.mPageCount++
             showOrHideProgress(View.VISIBLE)
             mMovieListViewModel.getTopMovies(mMovieListViewModel.mPageCount)
 
-        })
+        })*/
         mAdapter.mMovieClicked.observe(this, Observer {
             Intent(this, MovieDetailActivity::class.java).apply {
                 putExtra(Constants.MOVIE_ID,it)
@@ -129,11 +131,43 @@ class MovieListActivity : AppCompatActivity() {
             // Apply the adapter to the spinner
             spinner.adapter = adapter
         }
+        spinner.onItemSelectedListener = this
 
 
         // spinner?.setOnItemSelectedListener() = MovieListActivity@ // set the listener, to perform actions based on item selection
 
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+       val selectedItem =  parent?.getItemAtPosition(position)
+        if(selectedItem?.toString().equals(Constants.SETTING_NAME)){
+            Log.i("Name Selected ",selectedItem.toString())
+            val list = mMovieListViewModel.sortMovieByName().toMutableList()
+            mMovieListViewModel.mCurrentSetting = Constants.SETTING_NAME
+            mAdapter.setData(list)
+            mAdapter.notifyDataSetChanged()
+        }else if(selectedItem?.toString().equals(Constants.SETTING_TIME)){
+            Log.i("Time Selected ",selectedItem.toString())
+            val list = mMovieListViewModel.sortMovieByDate().toMutableList()
+            mMovieListViewModel.mCurrentSetting = Constants.SETTING_TIME
+            mAdapter.setData(list)
+            mAdapter.notifyDataSetChanged()
+
+        }
+        Log.i("this ",selectedItem.toString())
+    }
+
+    private fun processMovieList(movieList : ArrayList<Movie>): MutableList<Movie> {
+        if(mMovieListViewModel.mCurrentSetting.equals(Constants.SETTING_NAME)){
+           return mMovieListViewModel.sortMovieByName().toMutableList()
+        }else{
+           return mMovieListViewModel.sortMovieByDate().toMutableList()
+        }
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        TODO("Not yet implemented")
     }
 
 }
